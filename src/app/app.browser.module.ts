@@ -54,6 +54,9 @@ import {PmtRcvtThanksComponent} from './pages/pmt-rcvt-thanks/pmt-rcvt-thanks.co
 import{itemService} from '../app/pages/itemdetails/itemdetails.service';
 
 import {SingletonService} from './service/singleton.service';
+import {activateuserservce} from './service/ActivateUserService';
+import { FirstTimeUserComponent } from './pages/first-time-user/first-time-user.component';
+
 import { AppModule } from './app.module';
  @NgModule({
   imports: [
@@ -72,6 +75,7 @@ import { AppModule } from './app.module';
       {path:'grocery/:category/:pageindex',component:AppComponent},
       {path:'elec/:category/:pageindex',component:AppComponent},
       {path:'home',component:HomepageComponent},
+      {path:'FirstTimeUser',component:FirstTimeUserComponent},
       {path: 'itemDetail/:itemid', loadChildren: () => import('../app/pages/itemdetails/itemdetail.module').then(m => m.ItemdetailsModule)},
      
       {path:'TempRouteSearch/:tempsearch/:val',component:TempRouteComponent},
@@ -94,7 +98,8 @@ import { AppModule } from './app.module';
     
       {path: 'PlaceOrder/', loadChildren: () => import('../app/pages/place-order/place-order.module').then(m => m.PlaceOrdersModule)},
       {path: 'PmtRecevdThanks', loadChildren: () => import('../app/pages/pmt-rcvt-thanks/pmt-rcvt-thanks.module').then(m => m.PmtRcvtThanksModule)},
-    
+      {path: 'NewUserActivate', loadChildren: () => import('../app/pages/new-user-activate/new-usre-activate.module').then(m => m.NewUserActivateModule)},
+
       
       {path:'**',component:PageNotFoundComponentComponent}
   
@@ -120,7 +125,7 @@ import { AppModule } from './app.module';
     
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},ShoppingApiService,Globals,
-    ShoppingApiService,SingletonService,itemService,
+    ShoppingApiService,SingletonService,activateuserservce,itemService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:serviceintercepter,

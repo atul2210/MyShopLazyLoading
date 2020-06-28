@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {activateuserservce} from '../../service/ActivateUserService';
 
 @Component({
   selector: 'app-new-user-activate',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-user-activate.component.css']
 })
 export class NewUserActivateComponent implements OnInit {
-
-  constructor() { }
+emailId:string;
+  constructor(private activate:activateuserservce) { }
 
   ngOnInit() {
+        this.emailId=this.activate.getOption();
+
   }
 
 }

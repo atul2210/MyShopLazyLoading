@@ -5,7 +5,7 @@ import {registration} from '../../model/registration'
 import {ShoppingApiService} from '../../service/shopping-api.service'
 import {LoginComponent} from '../login/login.component';
 import { LOCAL_STORAGE } from '@ng-toolkit/universal'
-
+import {activateuserservce} from '../../service/ActivateUserService';
 
 @Component({
   selector: 'app-user-registration',
@@ -36,7 +36,7 @@ export class UserRegistrationComponent implements OnInit {
   pin:FormControl;
   otp:FormControl;
   ResState:any;
-  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private ActivatedRoute:ActivatedRoute,private router:Router,private ShoppingApiService:ShoppingApiService) { }
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private ActivatedRoute:ActivatedRoute,private router:Router,private ShoppingApiService:ShoppingApiService,private activateuserservce:activateuserservce) { }
   submitted:boolean;
   
   ngOnInit() {
@@ -118,19 +118,15 @@ export class UserRegistrationComponent implements OnInit {
         data.mystate = this.myform.controls["mystate"].value;
         data.pin = this.myform.controls["pin"].value;
         data.otp = +this.myform.controls["otp"].value;
-        
+        this.activateuserservce.setOption('email',this.myform.controls["myemail"].value);
+
+
+
           this.ShoppingApiService.addUser(data)
           .subscribe((m:Response)=>
           {
             this.response=m;
-            if(this.response.item1==false)
-            {
-              this.router.navigateByUrl("/Error/"+this.response.error.Message +"/regis/"+data.mobile )
-            }
-            else
-            {
-               this.router.navigate(['/checkin']);
-            }
+            this.router.navigateByUrl('/NewUserActivate')
           },
           (err) => 
           {

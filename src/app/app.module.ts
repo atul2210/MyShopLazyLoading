@@ -48,7 +48,10 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgtUniversalModule } from '@ng-toolkit/universal';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import{itemService} from '../app/pages/itemdetails/itemdetails.service';
-//import { NewUserActivateComponent } from './pages/new-user-activate/new-user-activate.component';
+import {activateuserservce} from './service/ActivateUserService';
+import { FirstTimeUserComponent } from './pages/first-time-user/first-time-user.component';
+
+
 
  @NgModule({
   declarations: [
@@ -62,7 +65,7 @@ import{itemService} from '../app/pages/itemdetails/itemdetails.service';
     SlidersComponent,
     TempRouteComponent,
     ErrorComponent,
-   
+    FirstTimeUserComponent
    
   ],
   imports: [
@@ -81,6 +84,7 @@ import{itemService} from '../app/pages/itemdetails/itemdetails.service';
       {path:'grocery/:category/:pageindex',component:AppComponent},
       {path:'elec/:category/:pageindex',component:AppComponent},
       {path:'home',component:HomepageComponent},
+      {path:'FirstTimeUser',component:FirstTimeUserComponent},
       {path: 'itemDetail/:itemid', loadChildren: () => import('../app/pages/itemdetails/itemdetail.module').then(m => m.ItemdetailsModule)},
       
       {path:'TempRouteSearch/:tempsearch/:val',component:TempRouteComponent},
@@ -105,7 +109,9 @@ import{itemService} from '../app/pages/itemdetails/itemdetails.service';
       {path: 'logout', loadChildren: () => import('../app/pages/logout/logout.module').then(m => m.LogoutModule)},
       { path: 'order-list', loadChildren: () => import('../app/pages/order-list/orders.module').then(m => m.OrdersModule) },
       {path: 'PmtRecevdThanks', loadChildren: () => import('../app/pages/pmt-rcvt-thanks/pmt-rcvt-thanks.module').then(m => m.PmtRcvtThanksModule)},
- 
+      {path: 'NewUserActivate', loadChildren: () => import('../app/pages/new-user-activate/new-usre-activate.module').then(m => m.NewUserActivateModule)},
+
+      
       {path:'**',component:PageNotFoundComponentComponent}
       
       ],{onSameUrlNavigation: 'reload'} ),
@@ -133,7 +139,7 @@ import{itemService} from '../app/pages/itemdetails/itemdetails.service';
     
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},ShoppingApiService,Globals,
-    ShoppingApiService,SingletonService,itemService,
+    ShoppingApiService,SingletonService,activateuserservce,itemService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:serviceintercepter,
