@@ -395,7 +395,7 @@ GetStates():Observable<any>
 
 ActivateUserAccount(email:string,active:boolean):Observable<any>
 {
-  
+ 
   this.uri=this.baseUrl+"/api/User/";
   this.uri=this.baseUrl+"/api/User/ActivateUser?Activate="+active +"&email="+email;
  

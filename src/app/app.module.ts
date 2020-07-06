@@ -84,7 +84,7 @@ import { FirstTimeUserComponent } from './pages/first-time-user/first-time-user.
       {path:'grocery/:category/:pageindex',component:AppComponent},
       {path:'elec/:category/:pageindex',component:AppComponent},
       {path:'home',component:HomepageComponent},
-      {path:'FirstTimeUser',component:FirstTimeUserComponent},
+      {path:'FirstTimeUser/:email',component:FirstTimeUserComponent},
       {path: 'itemDetail/:itemid', loadChildren: () => import('../app/pages/itemdetails/itemdetail.module').then(m => m.ItemdetailsModule)},
       
       {path:'TempRouteSearch/:tempsearch/:val',component:TempRouteComponent},
