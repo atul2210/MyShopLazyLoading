@@ -393,6 +393,19 @@ GetStates():Observable<any>
   );
 }
 
+GetCities(StateId:string):Observable<any>
+{
+  
+  this.uri=this.baseUrl+"/api/User/";
+
+  return this.http.get(
+  this.uri+"GetCities?StateId="+StateId, { observe: 'response'}).pipe(
+ // catchError(this.handleError )
+  );
+}
+
+
+
 ActivateUserAccount(email:string,active:boolean):Observable<any>
 {
  

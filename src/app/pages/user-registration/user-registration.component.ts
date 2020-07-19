@@ -19,6 +19,9 @@ export class UserRegistrationComponent implements OnInit {
     // 'Delhi',
     // 'Madhya Pradesh',
   ];
+  citeis:any=null;
+  selectedState;
+
   response:any=null;
 
   myform: FormGroup;
@@ -138,6 +141,20 @@ export class UserRegistrationComponent implements OnInit {
     }
   }
     
+  GetCities(StateId:string)
+  {
+
+   
+    this.ShoppingApiService.GetCities(StateId)
+    .subscribe((res:Response)=>
+    {
+        this.citeis=res.body
+        
+    });
+  }
+
+
+
   }
 
   

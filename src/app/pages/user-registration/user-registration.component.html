@@ -160,10 +160,10 @@ OTP is Invalid. Please re-enter wwwOTP"
 }">
 <label>State</label>
 <select class="form-control form-control-sm"
-     formControlName="mystate">
+     formControlName="mystate"  [(ngModel)]="selectedState" (change)=GetCities(selectedState)>
 <!-- <option value="">Please select a State</option> -->
 <option *ngFor="let lang of states"
-       [value]="lang.stateid">{{lang.stateName}}
+[value]="lang.stateid">{{lang.stateName}}
 </option>
 </select>
 
@@ -181,10 +181,17 @@ OTP is Invalid. Please re-enter wwwOTP"
    'has-success': city.valid && (city.dirty || city.touched)
 }">
     <label>City</label>
-    <input type="city"
+    <select class="form-control form-control-sm"
+     formControlName="mystate"  >
+
+    <option *ngFor="let cc of citeis"
+    [value]="cc.parentStateId">{{cc.city}}
+    </option>
+  </select>
+    <!-- <input type="city"
           class="form-control form-control-sm"
           formControlName="city"
-          required>
+          required> -->
     <div class="form-control-feedback"
         *ngIf="city.errors && (city.dirty || city.touched)">
     <p *ngIf="city.errors.required">City is required</p>
