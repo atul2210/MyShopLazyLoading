@@ -52,6 +52,7 @@ export class UserRegistrationComponent implements OnInit {
     {
       this.ResState=res.body;
       this.states=this.ResState;
+      console.log("states",this.states)
       
     });
 

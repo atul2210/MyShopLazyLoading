@@ -152,6 +152,29 @@ OTP is Invalid. Please re-enter wwwOTP"
 </div>
 </div>
 
+
+<div class="form-group"
+[ngClass]="{
+ 'has-danger': mystate.invalid && (mystate.dirty || mystate.touched),
+ 'has-success': mystate.valid && (mystate.dirty || mystate.touched)
+}">
+<label>State</label>
+<select class="form-control form-control-sm"
+     formControlName="mystate">
+<!-- <option value="">Please select a State</option> -->
+<option *ngFor="let lang of states"
+       [value]="lang.stateid">{{lang.stateName}}
+</option>
+</select>
+
+<div class="form-control-feedback"
+*ngIf="mystate.errors && (mystate.dirty || mystate.touched)">
+<p *ngIf="mystate.errors.required">State is required</p>
+
+</div>
+</div>
+
+
 <div class="form-group"
   [ngClass]="{
    'has-danger': city.invalid && (city.dirty || city.touched),
@@ -192,26 +215,7 @@ OTP is Invalid. Please re-enter wwwOTP"
 
 
 
-  <div class="form-group"
-       [ngClass]="{
-        'has-danger': mystate.invalid && (mystate.dirty || mystate.touched),
-        'has-success': mystate.valid && (mystate.dirty || mystate.touched)
-      }">
-    <label>State</label>
-    <select class="form-control form-control-sm"
-            formControlName="mystate">
-      <!-- <option value="">Please select a State</option> -->
-      <option *ngFor="let lang of states"
-              [value]="lang">{{lang.stateName}}
-      </option>
-    </select>
-
-    <div class="form-control-feedback"
-    *ngIf="mystate.errors && (mystate.dirty || mystate.touched)">
-<p *ngIf="mystate.errors.required">State is required</p>
-
-</div>
-  </div>
+ 
 
   <!-- <pre>{{myform.value | json}}</pre> -->
 <!-- </fieldset> -->
