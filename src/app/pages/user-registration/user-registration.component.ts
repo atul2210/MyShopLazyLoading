@@ -149,7 +149,7 @@ export class UserRegistrationComponent implements OnInit {
     .subscribe((res:Response)=>
     {
         this.citeis=res.body
-        
+        console.log(this.citeis)
     });
   }
 
