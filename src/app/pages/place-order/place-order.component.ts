@@ -8,6 +8,7 @@ import {registration,EditAddress} from '../../model/registration';
 import { LOCAL_STORAGE } from '@ng-toolkit/universal'
 import { Subscription } from "rxjs/Subscription";
 import { Inotify,itemNotify } from '../../pages/itemdetails/item-notify';
+import { Console } from 'console';
 @Component({
   selector: 'app-place-order',
   templateUrl: './place-order.component.html',
@@ -29,7 +30,12 @@ export class PlaceOrderComponent implements OnInit {
   @ViewChild('focusonAddress',{static:false})
   focusonAddress:ElementRef;
   currentLesson:boolean=false;
-
+  cities:any=null;
+  ResState:any;
+  states: string[] = [];
+  selectedState;
+  editSelectedCity;
+  editselectedState;
   constructor(@Inject(LOCAL_STORAGE) private localStorage: any, public totalItem:itemNotify,private singleton:SingletonService,private route:Router,private active:ActivatedRoute,private service:ShoppingApiService) { }
   
   get currentsession():string
@@ -56,7 +62,23 @@ export class PlaceOrderComponent implements OnInit {
          
         });
 
+
+
+
+        this.service.GetStates()
+        .subscribe((res)=>
+        {
+          this.ResState=res.body;
+          this.states=this.ResState;
+         
+          
+        });
+
+
+       
+
   }
+  
 
   GetAddress(sessionId:string)
   {
@@ -68,17 +90,23 @@ export class PlaceOrderComponent implements OnInit {
       this.myform.controls["userMiddleName"].setValue(res.body["middleName"]==='undefined'?'':res.body["middleName"]);
       this.myform.controls["userLastName"].setValue(res.body["lastName"]);
       this.myform.controls["address"].setValue(res.body["address"]);
-      this.myform.controls["city"].setValue(res.body["city"]);
+     // this.myform.controls["city"].setValue(res.body["city"]);
       this.myform.controls["pin"].setValue(res.body["pin"]);
       this.myform.controls["username"].setValue(res.body["firstName"]);
-      this.state=new Array(res.body["state"])
-          
+      
+      this.editselectedState=res.body["state"]
      
+      this.editSelectedCity=res.body["city"]
+      this.GetCities(this.editselectedState);
+      
 
-          }
+         }
     );
 
   }
+
+  
+
 
   Order()
   {
@@ -218,6 +246,23 @@ export class PlaceOrderComponent implements OnInit {
                   }
             });
       }
+
+
+
+      GetCities(StateId:string)
+      {
+    
+        
+       
+        this.service.GetCities(StateId)
+       
+        .subscribe((res:Response)=>
+        {
+            this.cities=res.body
+            console.log('cities9999 ',this.cities)
+        });
+      }
+
 
       ngOnDestroy()
       {

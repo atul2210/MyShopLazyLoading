@@ -75,25 +75,49 @@ role="form"  >
       </div>
 </div>
 
-<div class="form-group"
-  [ngClass]="{
-   'has-danger': city.invalid && (city.dirty || city.touched),
-   'has-success': city.valid && (city.dirty || city.touched)
-}">
-    <label class="fontClass">City</label>
-    <input type="city"
-          class="form-control form-control-sm"
-          formControlName="city"
-          required>
-    <div class="form-control-feedback"
-        *ngIf="city.errors && (city.dirty || city.touched)">
-    <p style="color: red;" *ngIf="city.errors.required">City is required</p>
 
-    </div>
 
-</div>
 
-<div class="form-group"
+
+
+
+
+
+  <!-- <div class="form-group"
+       [ngClass]="{
+        'has-danger': mystate.invalid && (mystate.dirty || mystate.touched),
+        'has-success': mystate.valid && (mystate.dirty || mystate.touched)
+      }"> -->
+    <label class="fontClass">State</label>
+    <select class="form-control form-control-sm" [(ngModel)]="editselectedState"
+            formControlName="mystate" [(ngModel)]="selectedState" (change)=GetCities(selectedState)>
+            
+      <option *ngFor="let lang of states"
+              [value]="lang.stateid">{{lang.stateName}} 
+      </option>
+    </select>
+    <div class="form-group"
+    [ngClass]="{
+     'has-danger': city.invalid && (city.dirty || city.touched),
+     'has-success': city.valid && (city.dirty || city.touched)
+  }">
+      <label class="fontClass">City</label>
+          <select class="form-control form-control-sm" [(ngModel)]="editSelectedCity"
+          formControlName="city"  >
+          <!-- <option [value]="null" disabled>Select</option> -->
+        <option *ngFor="let cc of cities" 
+        [value]="cc.stateid">{{cc.city}}
+        </option>
+      </select>
+      <div class="form-control-feedback"
+          *ngIf="city.errors && (city.dirty || city.touched)">
+      <p style="color: red;" *ngIf="city.errors.required">City is required</p>
+  
+      </div>
+  
+  </div>
+
+  <div class="form-group"
   [ngClass]="{
    'has-danger': pin.invalid && (pin.dirty || pin.touched),
    'has-success': pin.valid && (pin.dirty || pin.touched)
@@ -112,22 +136,6 @@ role="form"  >
 </div>
 
 
-
-
-
-  <!-- <div class="form-group"
-       [ngClass]="{
-        'has-danger': mystate.invalid && (mystate.dirty || mystate.touched),
-        'has-success': mystate.valid && (mystate.dirty || mystate.touched)
-      }"> -->
-    <label class="fontClass">State</label>
-    <select class="form-control form-control-sm"
-            formControlName="mystate">
-    
-      <option *ngFor="let lang of state"
-              [value]="lang" [selected]="lang">{{lang}} 
-      </option>
-    </select>
 
     <!-- <div class="form-control-feedback"
     *ngIf="mystate.errors && (mystate.dirty || mystate.touched)">
