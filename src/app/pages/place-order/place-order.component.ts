@@ -112,7 +112,7 @@ export class PlaceOrderComponent implements OnInit {
   {
     if(ee===true)
     {
-      alert(ee);
+     
     if(this.totalItem.totalCartItem===0) 
         {this.currentLesson=true;     return false; }
          else {
@@ -132,6 +132,7 @@ export class PlaceOrderComponent implements OnInit {
       regis.firstName= this.myform.controls["username"].value;
       regis.state= this.myform.controls["mystate"].value;
      
+      regis.PrivacyAgreed=ee;
 
      
 

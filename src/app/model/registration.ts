@@ -14,6 +14,7 @@ export class registration
     state:string;
     pin:string;
     otp:number;
+    PrivacyAgreed:boolean;
 }
 
 
