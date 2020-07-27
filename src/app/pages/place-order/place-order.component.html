@@ -143,11 +143,23 @@ role="form"  >
 
 <!-- </div>
   </div> -->
+  
+ <div style="font-size: 14px; color: red; overflow:auto"class="pull-left">
+  <!-- <app-privacy-policy></app-privacy-policy> 
+   -->
+    <input type ="checkbox"  ngModel  #chkEnable > 
 
+    
+    <a 
+       [routerLink]="['/PrivacyPolicy']"> I agree to Terms, Conditions mentioned in Privacy Policy. Read Privacy Policy 
+    </a>
+</div>
+<br>
   <div *ngIf="currentLesson" class="text-danger">Cart is empty</div>
+<br>
   <div >
     <button type="button" *ngIf="isDisplayButton" (click)="EditAddress();" class=" display-2 mt-2 btn btn-success">Edit Address</button>
-    <button type="button" *ngIf="isDisplayButton"  (click)="Order();" class="display-2 mt-2 btn btn-success custom pull-right" >Payment</button>
+    <button type="button" *ngIf="isDisplayButton"  (click)="Order(chkEnable.checked);" class="display-2 mt-2 btn btn-success custom pull-right" [disabled]="!chkEnable.checked">Payment</button>
 
     <button *ngIf="isEdited" type="button" (click)="SaveAddress();" class="display-2 mt-2 btn btn-success">Save Address</button>
 

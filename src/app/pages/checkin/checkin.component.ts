@@ -15,7 +15,7 @@ import { LOCAL_STORAGE } from '@ng-toolkit/universal';
   selector: 'app-checkin',
   templateUrl: './checkin.component.html',
   styleUrls: ['./checkin.component.css'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.Emulated,
 
 styles: [
     `
@@ -123,7 +123,7 @@ document.getElementById("demo").innerHTML = this.rows.reduce(this.getSum);
       header.set("Authorization","Bearer "+ idToken);
     }
     else
-      this.route.navigateByUrl('/login');
+     { this.route.navigateByUrl('/login');}
 
           this.ShoppingApiService.RemoveItem(itemid,quantity,idToken,checkinid)
           .subscribe((res)=>

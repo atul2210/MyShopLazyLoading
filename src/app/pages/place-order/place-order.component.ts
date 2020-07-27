@@ -108,9 +108,11 @@ export class PlaceOrderComponent implements OnInit {
   
 
 
-  Order()
+  Order(ee)
   {
-    
+    if(ee===true)
+    {
+      alert(ee);
     if(this.totalItem.totalCartItem===0) 
         {this.currentLesson=true;     return false; }
          else {
@@ -161,7 +163,7 @@ export class PlaceOrderComponent implements OnInit {
    
 
       }
-     
+    }
   }
 
 
