@@ -144,15 +144,13 @@ role="form"  >
 <!-- </div>
   </div> -->
   
- <div style="font-size: 14px; color: red; overflow:auto"class="pull-left">
+ <div style="font-size: 14px;  overflow:auto"class="pull-left">
   <!-- <app-privacy-policy></app-privacy-policy> 
    -->
-    <input type ="checkbox"  ngModel  #chkEnable > 
-
-    
-    <a 
+    <a style="color: red!important;"
        [routerLink]="['/PrivacyPolicy']"> I agree to Terms, Conditions mentioned in Privacy Policy. Read Privacy Policy 
     </a>
+    <input type ="checkbox"  ngModel  #chkEnable  class="ml-3"> 
 </div>
 <br>
   <div *ngIf="currentLesson" class="text-danger">Cart is empty</div>

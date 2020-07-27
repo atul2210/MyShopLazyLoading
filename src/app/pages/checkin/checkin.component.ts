@@ -15,7 +15,7 @@ import { LOCAL_STORAGE } from '@ng-toolkit/universal';
   selector: 'app-checkin',
   templateUrl: './checkin.component.html',
   styleUrls: ['./checkin.component.css'],
-  encapsulation: ViewEncapsulation.Emulated,
+ // encapsulation: ViewEncapsulation.Emulated,
 
 styles: [
     `
