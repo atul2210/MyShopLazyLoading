@@ -350,9 +350,9 @@ public async ResetPassword(email:string):Promise<any>
   }
 
 
-public  changepassword(email:string,password:string,confirmpassword:string):Observable<any>
+public  changepassword(email:string,password:string,confirmpassword:string,oldPassword:string):Observable<any>
 {
-  this.uri=this.baseUrl+"/api/sms/ChangePassword?email="+email+"&password="+password+"&confirmpassword="+confirmpassword;
+  this.uri=this.baseUrl+"/api/sms/ChangePassword?email="+email+"&password="+password+"&confirmpassword="+confirmpassword+"&OldPassword="+oldPassword;
   return  this.http.get(this.uri, { observe: 'response'}).pipe(
  // catchError(this.handleError )
   );

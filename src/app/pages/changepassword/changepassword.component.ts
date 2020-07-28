@@ -23,6 +23,7 @@ export class ChangepasswordComponent implements OnInit {
   myemail: FormControl;
   password: FormControl;
   confirmpassword: FormControl;
+  oldPassword:FormControl;
   items:any;
 
   constructor(private ActivatedRoute:ActivatedRoute,private router:Router,private ShoppingApiService:ShoppingApiService) { }
@@ -45,11 +46,18 @@ export class ChangepasswordComponent implements OnInit {
         Validators.minLength(8)
       ]);
 
+      this.oldPassword = new FormControl('', [
+        Validators.required,
+        Validators.minLength(8)
+      ]);
+
+
       this.myform = new FormGroup({
         
       myemail: this.myemail,
       password: this.password,
       confirmpassword: this.confirmpassword,
+      oldPassword:this.oldPassword
     });
 
   }
@@ -62,7 +70,8 @@ export class ChangepasswordComponent implements OnInit {
      let email =  this.myform.controls["myemail"].value;
      let password= this.myform.controls["password"].value;
      let confirmpassword= this.myform.controls["confirmpassword"].value;
-      this.ShoppingApiService.changepassword(email,password,confirmpassword)
+     let oldPaswd = this.myform.controls["oldPassword"].value
+      this.ShoppingApiService.changepassword(email,password,confirmpassword,oldPaswd)
       .subscribe((res:Response)=>
       {
         this.items=res;
