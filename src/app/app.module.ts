@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy, CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
@@ -50,7 +50,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import{itemService} from '../app/pages/itemdetails/itemdetails.service';
 import {activateuserservce} from './service/ActivateUserService';
 import { FirstTimeUserComponent } from './pages/first-time-user/first-time-user.component';
-
+import { ReturnPolicyComponent } from './pages/return-policy/return-policy.component';
 
 
  @NgModule({
@@ -65,8 +65,8 @@ import { FirstTimeUserComponent } from './pages/first-time-user/first-time-user.
     SlidersComponent,
     TempRouteComponent,
     ErrorComponent,
-    FirstTimeUserComponent
-   
+    FirstTimeUserComponent,
+    ReturnPolicyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),FlexLayoutModule,  ReactiveFormsModule,HttpClientModule,RouterModule,
@@ -110,7 +110,7 @@ import { FirstTimeUserComponent } from './pages/first-time-user/first-time-user.
       { path: 'order-list', loadChildren: () => import('../app/pages/order-list/orders.module').then(m => m.OrdersModule) },
       {path: 'PmtRecevdThanks', loadChildren: () => import('../app/pages/pmt-rcvt-thanks/pmt-rcvt-thanks.module').then(m => m.PmtRcvtThanksModule)},
       {path: 'NewUserActivate', loadChildren: () => import('../app/pages/new-user-activate/new-usre-activate.module').then(m => m.NewUserActivateModule)},
-
+      {path:'ReturnPolicy', component:ReturnPolicyComponent},
       
       {path:'**',component:PageNotFoundComponentComponent}
       

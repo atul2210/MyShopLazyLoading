@@ -77,9 +77,11 @@ export class LoginComponent implements OnInit {
         ////  this.location.back();
         let itemid:number= this.itemService.itemIdLogin;
             
-        if(itemid!=0)
+        if(itemid!==0)
         {
-         
+          if(itemid===undefined)
+          this.router.navigateByUrl(`HomeComponent`);
+          else
           this.router.navigateByUrl(`/itemDetail/${itemid}`);
         }
         else

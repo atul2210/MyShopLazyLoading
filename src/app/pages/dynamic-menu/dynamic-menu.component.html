@@ -13,7 +13,9 @@
       
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0 "  >
             
-      
+            <li class="nav-item"> 
+              <a class="nav-link" [routerLink]="['HomeComponent']">Home</a>
+          </li>
                 <li class="nav-item dropdown" *ngFor="let item of menuitems;">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{item.menuName}}
@@ -33,9 +35,7 @@
             <!-- <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/PrivacyPolicy']">Privacy Policy</a>
             </li> -->
-            <li class="nav-item"> 
-                <a class="nav-link" [routerLink]="['']">Home</a>
-            </li>
+         
             
             
 <!--             
