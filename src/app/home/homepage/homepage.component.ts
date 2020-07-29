@@ -62,6 +62,8 @@ export class HomepageComponent implements OnInit,OnDestroy {
         this.fullNameSubcription = this.ShoppingApiService.getUserFullName()
           .subscribe(fullname=>
           {
+          
+            
             this.fullName ="Hi "+fullname;
             this.localStorage.setItem("fullName",this.fullName)
           }

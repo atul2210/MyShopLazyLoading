@@ -1,21 +1,21 @@
 
 .navbar{
-    background: orangered !important;
+    background: rgb(236, 144, 245) !important;
 }
 
 .dropdown{
-    border-radius:0;
-    border:0;
+    border-radius:1;
+    border:1;
 }
 .dropdown-menu{
-    background:#5350f1;
+    background:rgb(236, 144, 245);
     border:0;
-    top:80%;
+    top:100%;
     border-radius:0px 0px 5px 5px;
 }
 .dropdown-item:hover{
-    background:orangered;
-    color:rgb(42, 22, 221);
+    background:rgb(243, 163, 239);
+    color:rgb(190, 21, 233);
 }
 .dropdown-menu a{
     color:#fff;
@@ -43,8 +43,8 @@ nav a {
     
     justify-items: stretch;
     align-items: stretch;
-    box-shadow: 1px 1px blue;
-    
+    box-shadow: 1px 1px 1px 1px purple;
+    border: 1px solid;
     padding: 5px;
 
     /* float: left;
