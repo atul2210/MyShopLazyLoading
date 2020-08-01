@@ -25,7 +25,7 @@ export class ErrorComponent implements OnInit {
     if(this.backc=="regis")
     {
      
-      this.router.navigateByUrl("/registration/"+this.mobi);
+      this.router.navigateByUrl("/registration");
     }
     if(this.backc=="logi")
     {

@@ -18,10 +18,10 @@
     color:rgb(190, 21, 233);
 }
 .dropdown-menu a{
-    color:#fff;
+    color :royalblue
 } 
 .navbar .nav-item .nav-link{
-    color:#eee !important; 
+    color:rgb(138, 21, 233) !important; 
     
 }
 .navbar .nav-item .nav-link:hover .navbar .nav-item .nav-link{

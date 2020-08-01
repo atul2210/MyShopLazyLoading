@@ -81,7 +81,7 @@ import { AppModule } from './app.module';
       {path:'TempRouteSearch/:tempsearch/:val',component:TempRouteComponent},
       {path:'menu/:menucate/:menusubcate',component:TempRouteComponent},
       {path: 'checkin', loadChildren: () => import('../app/pages/checkin/checkin.module').then(m => m.CheckintModule)},
-      {path: 'registration/:mobile', loadChildren: () => import('../app/pages/user-registration/user-registration.module').then(m => m.UserRegistrationComponentModule)},
+      {path: 'registration', loadChildren: () => import('../app/pages/user-registration/user-registration.module').then(m => m.UserRegistrationComponentModule)},
       {path:'search/:item',component:SearchResultComponent,runGuardsAndResolvers: 'always'},
       {path: 'forgetpassword', loadChildren: () => import('../app/pages/foreget-password/forget-password.module').then(m => m.ForgetPasswordModule)},
       {path: 'logout', loadChildren: () => import('../app/pages/logout/logout.module').then(m => m.LogoutModule)},

@@ -39,6 +39,10 @@ export class UserRegistrationComponent implements OnInit {
   pin:FormControl;
   otp:FormControl;
   ResState:any;
+  afterSubmit:boolean=false;
+  entMobile:number
+  err:any;
+  messege:string="";
   constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private ActivatedRoute:ActivatedRoute,private router:Router,private ShoppingApiService:ShoppingApiService,private activateuserservce:activateuserservce) { }
   submitted:boolean;
   
@@ -48,7 +52,7 @@ export class UserRegistrationComponent implements OnInit {
     this.createFormControls();
     this.createForm();
    
-    this.myform.controls["mobile"].patchValue(this.ActivatedRoute.snapshot.params['mobile']);
+    //this.myform.controls["mobile"].patchValue(this.ActivatedRoute.snapshot.params['mobile']);
     
     this.ShoppingApiService.GetStates()
     .subscribe((res)=>
@@ -104,7 +108,7 @@ export class UserRegistrationComponent implements OnInit {
 
     save() 
     { 
-      
+      ///this.myform.controls["otp"].updateValueAndValidity;
       if(this.myform.valid)
       {
 
@@ -123,20 +127,21 @@ export class UserRegistrationComponent implements OnInit {
         data.pin = this.myform.controls["pin"].value;
         data.otp = +this.myform.controls["otp"].value;
         this.activateuserservce.setOption('email',this.myform.controls["myemail"].value);
-
+        this.afterSubmit=true;
 
 
           this.ShoppingApiService.addUser(data)
           .subscribe((m:Response)=>
           {
             this.response=m;
+            this.err=this.response;
             this.router.navigateByUrl('/NewUserActivate')
           },
           (err) => 
           {
           
             console.log(err);
-            this.router.navigateByUrl("/Error/"+err.error.Message +"/regis/"+data.mobile )
+            this.router.navigateByUrl("/Error/"+err.error.error +"/regis/"+data.mobile )
           });
     }
   }
@@ -153,6 +158,40 @@ export class UserRegistrationComponent implements OnInit {
     });
   }
 
+  async proceed()
+  {
+  ////  this.myform.controls["otp"].clearValidators();
+    this.myform.controls["otp"].setValue("######");
+    this.messege="";
+    
+    if(this.myform.valid)
+    {
+          if(this.myform.controls["mobile"].value!=="")
+          {
+            let res = await this.ShoppingApiService.getOTP(this.myform.controls["mobile"].value)
+                .then((res:Response)=>{                 
+                this.messege= "We have send an OTP to your Mobile Number " + this.myform.controls["mobile"].value + "  Please check and enter OTP."
+                })
+                .catch(err=>
+                {
+                  
+                
+                  this.err=err;
+                  //this.router.navigateByUrl("/Error/"+"err" +"/logi/"+this.mobile);
+                
+                });
+              }
+          }
+          else
+            return false;
+          
+    this.afterSubmit=true;
+  }
+
+  goback()
+  {
+    this.afterSubmit=false;
+  }
 
 
   }
