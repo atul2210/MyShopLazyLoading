@@ -196,7 +196,7 @@ OTP is Invalid. Please re-enter wwwOTP"
           required> -->
     <div class="form-control-feedback"
         *ngIf="city.errors && (city.dirty || city.touched)">
-    <p *ngIf="city.errors.required">City is required</p>
+    <p *ngIf="city.errors.required" class="text-danger">City is required</p>
 
     </div>
 
@@ -214,7 +214,7 @@ OTP is Invalid. Please re-enter wwwOTP"
           required>
     <div class="form-control-feedback was-validated"
         *ngIf="pin.errors && (pin.dirty || pin.touched)">
-    <p *ngIf="pin.errors.required">Pin is required</p>
+    <p *ngIf="pin.errors.required" class="text-danger">Pin is required</p>
 
     </div>
 
@@ -235,7 +235,7 @@ OTP is Invalid. Please re-enter wwwOTP"
       }">
       <br>
       <label>Enter OTP</label>
-      <input type="text" class="form-control form-control-sm" formControlName="otp"  value="0000"  required>
+      <input type="text" class="form-control form-control-sm" formControlName="otp"  >
             <div class="was-validated"
               *ngIf="otp.errors && (otp.dirty || otp.touched ) ">
             <p *ngIf="otp.errors.required" class ="text-danger">OTP is required</p>

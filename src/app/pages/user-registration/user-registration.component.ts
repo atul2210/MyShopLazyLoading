@@ -43,6 +43,9 @@ export class UserRegistrationComponent implements OnInit {
   entMobile:number
   err:any;
   messege:string="";
+
+
+  
   constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private ActivatedRoute:ActivatedRoute,private router:Router,private ShoppingApiService:ShoppingApiService,private activateuserservce:activateuserservce) { }
   submitted:boolean;
   
@@ -84,7 +87,7 @@ export class UserRegistrationComponent implements OnInit {
       this.mystate= new FormControl('',Validators.required);
       this.ulternatemobile = new FormControl('');
       this.pin= new FormControl('',Validators.required);
-      this.otp = new FormControl('',Validators.required);
+      this.otp = new FormControl('');
     }
   
     createForm() {
@@ -108,7 +111,8 @@ export class UserRegistrationComponent implements OnInit {
 
     save() 
     { 
-      ///this.myform.controls["otp"].updateValueAndValidity;
+
+     
       if(this.myform.valid)
       {
 
@@ -160,14 +164,23 @@ export class UserRegistrationComponent implements OnInit {
 
   async proceed()
   {
-  ////  this.myform.controls["otp"].clearValidators();
-    this.myform.controls["otp"].setValue("######");
-    this.messege="";
+   // this.afterSubmit=true;
+  //   this.myform.controls["otp"].setErrors({'incorrect': false});
+  // this.myform.controls["otp"].clearValidators();
+  // this.myform.controls["otp"].updateValueAndValidity;
+
+
+  
+  ////  this.myform.controls["otp"].setValue("######");
+  
     
     if(this.myform.valid)
     {
-          if(this.myform.controls["mobile"].value!=="")
-          {
+
+ /////     this.myform.controls["otp"].setErrors({'incorrect': false});
+     
+
+         
             let res = await this.ShoppingApiService.getOTP(this.myform.controls["mobile"].value)
                 .then((res:Response)=>{                 
                 this.messege= "We have send an OTP to your Mobile Number " + this.myform.controls["mobile"].value + "  Please check and enter OTP."
@@ -180,12 +193,14 @@ export class UserRegistrationComponent implements OnInit {
                   //this.router.navigateByUrl("/Error/"+"err" +"/logi/"+this.mobile);
                 
                 });
-              }
-          }
-          else
-            return false;
+                this.afterSubmit=true;
+
+    }
           
-    this.afterSubmit=true;
+        this.myform.controls["otp"].setValidators(Validators.required);
+        this.myform.controls["otp"].updateValueAndValidity;
+  
+    
   }
 
   goback()
