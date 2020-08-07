@@ -88,6 +88,7 @@ export class LoginComponent implements OnInit {
         {
           this.router.navigateByUrl('')
         }
+        this.http.dispSignInYes(true);
        // this.router.navigateByUrl("checkin")
   })
     err => 

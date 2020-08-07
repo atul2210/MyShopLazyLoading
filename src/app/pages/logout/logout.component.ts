@@ -8,12 +8,14 @@ import {ShoppingApiService} from '../../service/shopping-api.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private service:ShoppingApiService) { }
+  constructor(private service:ShoppingApiService) {
+    this.service.dispSignInYes(false);
+   }
 
   ngOnInit() {
     this.service.userFullName("");
     this.service.logout();
-  
+   
     
 
   }

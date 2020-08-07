@@ -32,6 +32,7 @@ export class HomepageComponent implements OnInit,OnDestroy {
   private subscription: Subscription;
   private fullNameSubcription: Subscription;
   private subs: Subscription;
+  private disp: boolean=false;;
   itemReceivedAddToCard :any[];
   count:number;
   fullName:string;
@@ -49,6 +50,12 @@ export class HomepageComponent implements OnInit,OnDestroy {
 
     this.getcheck();
 
+    this.ShoppingApiService.dispSignInNo()
+    .subscribe(data=>{
+      this.disp=data;
+     
+
+    }); 
    this.subscription= this.ShoppingApiService.getItem()
     .subscribe( 
         ttlItems=>
@@ -56,6 +63,7 @@ export class HomepageComponent implements OnInit,OnDestroy {
          this.totalItem = ttlItems; 
         
         });
+
         if(this.localStorage.getItem("fullName")===null)
         {
 
@@ -69,10 +77,15 @@ export class HomepageComponent implements OnInit,OnDestroy {
           }
         )
         }
-        else this.fullName= this.localStorage.getItem("fullName");
+        else {
+          this.fullName= this.localStorage.getItem("fullName");
+        }
 
-        
+     
   }
+
+
+
   public GetMenuItems()
   {
     this.subs = this.service.menuitems()
