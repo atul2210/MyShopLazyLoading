@@ -32,7 +32,7 @@ export class HomepageComponent implements OnInit,OnDestroy {
   private subscription: Subscription;
   private fullNameSubcription: Subscription;
   private subs: Subscription;
-  private disp: boolean=false;;
+  disp: boolean=false;;
   itemReceivedAddToCard :any[];
   count:number;
   fullName:string;
