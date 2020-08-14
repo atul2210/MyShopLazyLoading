@@ -12,6 +12,10 @@ import { HttpRequest, HttpHeaders } from '@angular/common/http';
 import {itemService} from '../../pages/itemdetails/itemdetails.service';
 import { LoadingIndicatorServiceService } from '../../service/loading-indicator-service.service';
 import { LOCAL_STORAGE, WINDOW } from '@ng-toolkit/universal';
+
+import {ReactiveFormsModule,FormsModule,NgControl,  FormGroup,FormControl,ValidationErrors,Validator, Validators} from '@angular/forms'
+
+
 declare var jquery:any;
 declare var $ :any;
 
@@ -45,6 +49,10 @@ availableQty:number;
 breakpoint: number;
 displayError:boolean=false;
 loading:boolean=false;
+myform: FormGroup;
+sizes: FormControl;
+selecteditemId;
+availableSizes:any[];
   constructor(@Inject(WINDOW) private window: Window, @Inject(LOCAL_STORAGE) private localStorage: any,  public restProvider:ShoppingApiService,public HomepageComponent:HomepageComponent,private route:ActivatedRoute, private globals:Globals,
     private router:Router, private CartItemServiceService:CartItemServiceService,private inotify:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService,private itemService:itemService){
       loadingIndicatorService
@@ -65,45 +73,62 @@ loading:boolean=false;
     //$('#74').ezPlus();
    
     this.breakpoint = (this.window.innerWidth <= 400) ? 1 : 2;
-
+    this.sizes= new  FormControl('',Validators.required);
     
+    this.myform = new FormGroup({
+    
+      sizes:this.sizes,
+    });
+
+
     
     this.itemid = this.route.snapshot.params["itemid"];
-    
-    this.restProvider.itemDetails(this.itemid)
-    .subscribe(
-      data => {
-      
-        if(data.body.availableQty>0) 
-        {
-            
-          data.body.image1= data.body.image1;
-        
-          this.itemDetail= Array.of(data.body)
-        // //   ///this.colorDetail =data.body.availableColor.split(";")
-        // //  // this.colorname=this.colorDetail[0]
-          this.price = data.body.price
-          this.offerprice = data.body.offerPrice
-          this.deliverycharges = data.body.deliveryCharges
-          this.coloId = data.body.colorId
-          this.sizeName = data.body.sizeName
-          this.category = data.body.categoryName
-          this.brand = data.body.brand
-          this.availableQty = data.body.availableQty
-          this.displayError=false;
-      }
-      else  
-      {
-        this.displayError=true;
-      }
-    }
-    
-  )
- 
-
-
-
+    this.selecteditemId=this.itemid;
+    this.GetItemDetails(this.itemid);
   }
+
+
+
+GetItemDetails(itemId:string)
+{
+
+  this.restProvider.itemDetails(itemId)
+  .subscribe(
+    data => {
+    
+      if(data.body.availableQty>0) 
+      {
+          
+        data.body.image1= data.body.image1;
+      
+        this.itemDetail= Array.of(data.body)
+      // //   ///this.colorDetail =data.body.availableColor.split(";")
+      // //  // this.colorname=this.colorDetail[0]
+        this.price = data.body.price
+        this.offerprice = data.body.offerPrice
+        this.deliverycharges = data.body.deliveryCharges
+        this.coloId = data.body.colorId
+        this.sizeName = data.body.sizeName
+        this.category = data.body.categoryName
+        this.brand = data.body.brand
+        this.availableQty = data.body.availableQty
+        this.displayError=false;
+        this.availableSizes=data.body.availableSize;
+        console.log(this.itemDetail);
+    }
+    else  
+    {
+      this.displayError=true;
+    }
+  }
+  
+)
+
+
+
+}
+
+
 
   overTitle(){
     if(this.showSelected == true){ ;
