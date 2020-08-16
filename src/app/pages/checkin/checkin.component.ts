@@ -10,6 +10,7 @@ import {checkedInItems,checkedInItemsArray} from '../../model/checkedInItems';
 import { Location } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-checkin',
@@ -93,7 +94,9 @@ GetCheckedInItems()
        
         this.itemnotify.totalCartItem = this.rows.length;
         this.getSum(this.rows);
+        console.log(this.rows);
         return this.rows;
+       
         });
   }
 }
@@ -102,8 +105,8 @@ public getSum(sum:any[]) {
   this.OfferPriceSum=0;
   this.saveSum=0;
   for(var i = 0; i < sum.length; i++){
-    this.OfferPriceSum =this.OfferPriceSum+sum[i].offerprice;
-    this.saveSum = this.saveSum + ((sum[i].price) - (sum[i].offerprice));
+    this.OfferPriceSum =this.OfferPriceSum+this.OfferPriceSum+sum[i].offerprice;
+    this.saveSum = this.saveSum + ((sum[i].price) - (sum[i].offerprice))*sum[i].quantity;
    
   }
   

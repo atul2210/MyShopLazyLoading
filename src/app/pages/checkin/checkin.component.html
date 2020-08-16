@@ -60,20 +60,16 @@
                 </div>
                 <div class="row">
                     <div class ="col-md-12">    
-                        <h4 style ="color:blueviolet">   Price : <i [innerHTML]="row['price']"></i></h4>
+                        <h4 style ="color:blueviolet">   Price : <i [innerHTML]="row['price']|currency:'INR'"></i></h4>
                 </div>
                 </div>
                 <div class="row">
                     <div class ="col-md-12">        
-                      <h4 style ="color:blue"> Offer Price : <i [innerHTML]="row['offerprice']"></i></h4>
+                      <h4 style ="color:blue"> Offer Price : <i [innerHTML]="row['offerprice']|currency:'INR'"></i></h4>
                   </div>
                 </div>  
                 
-                <div class="row">
-                    <div class ="col-md-12">    
-                      <h4 style ="color:blueviolet">  Saved : <i [innerHTML]="(+row['price']) - (+row['offerprice'])"></i></h4>
-                        </div>
-                    </div>
+             
                     <div class="row">
                         <div class ="col-md-12">
                           <h4 style ="color:blue">    Color : <i [innerHTML]="row['colorname']"></i></h4>
@@ -84,7 +80,22 @@
                           <h4 style ="color:blueviolet"> Quantity : <i [innerHTML]="row['quantity']"></i></h4>
                     </div>
                     </div>
+                    <div class="row">
+                      <div class ="col-md-12">
+                        <h4 style ="color:blue"> Total Amount : <i [innerHTML]="row['price']* row['quantity']|currency:'INR'" ></i></h4>
+                  </div>
+                  </div>
+                    <div class="row">
+                      <div class ="col-md-12">
+                        <h4 style ="color:blue"> Total Offer Amount : <i [innerHTML]="row['paidAmount']|currency:'INR' " ></i></h4>
+                  </div>
+                  </div>
 
+                  <div class="row">
+                    <div class ="col-md-12">    
+                      <h4 style ="color:blueviolet">  Saved : <i [innerHTML]="((+row['price']) - (+row['offerprice']))  * (+row['quantity'])|currency:'INR'"></i></h4>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class ="col-md-12">
                            <button class ="btn btn-success" style="width:80px" (click)="RemoveItems(row['itemId'],row['quantity'],row['id'])" >
@@ -165,10 +176,12 @@
           </ngx-datatable-column> -->
 
         </ngx-datatable>
-        <br>
-              <p class="text-center mb-2">You saved Rs : {{saveSum}}</p>
-              <p class ="text-center">Paid Amount  Rs : {{OfferPriceSum}}</p>
-      
+  <br>
+            <p class ="text-center">Total Amount  -  {{rows[0].totaPrice |currency:'INR':'symbol-narrow'}}</p>
+            <p class="text-center ">Total Paid Amount   {{rows[0].totalPaidAmunt|currency:'INR':'symbol-narrow'}}"</p>
+ 
+            <p class="text-center ">You saved   {{rows[0].totaPrice- rows[0].totalPaidAmunt |currency:'INR':'symbol-narrow'}}"</p>
+ 
             <a class="btn btn-success mb-2"  (click)= "placeOrder();" >Place Order</a>
             <a  class="btn btn-danger pull-right"(click)="cancel()">Back</a>
         

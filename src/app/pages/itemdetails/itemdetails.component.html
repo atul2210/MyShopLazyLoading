@@ -36,6 +36,12 @@
               </tr>
               <tr>
                 <td class="item-fore-color">
+                            Brand:&nbsp; {{itemDetail[0].brand}}
+  
+                </td>
+              </tr>
+              <tr>
+                <td class="item-fore-color">
                 Size:&nbsp; {{itemDetail[0].sizeName}}
                 </td>
               </tr>
@@ -68,26 +74,40 @@
 <tr>
 
       <td  class="item-fore-color" style= "-webkit-text-fill-color:crimson "  >
-        <h4>Available Quantity: &nbsp;{{itemDetail[0].availableQty}}</h4>
+        <p>Available Quantity: &nbsp;{{itemDetail[0].availableQty}}</p>
       </td>
- </tr>  
+ </tr> 
+  <tr  >
+   <td class="item-fore-color">
+  <!-- <input type="number" value="{{counter}}" class="form-control" style="text-align:center;" > -->
+<p>Quantity :</p>  
+  <input type ="button" class="qty-btn" [disabled]="disableplus" value="+" (click)="salequantityplus();" />
+    <input type ="text" class="text-danger " [value]="minQty" style="width:30px;" disabled=true/>
+    <input type ="button" class="qty-btn" [disabled]="disableminus"  value="-" (click)="salequantitminus();"/>
+
+</td>
+ </tr>
+ 
  <tr>      
         <td class="item-fore-color">
-          <h4>Total Price: &nbsp;{{itemDetail[0].price |currency :"₹":''}}</h4>
+          <h4>Price: &nbsp;{{itemDetail[0].price |currency :"₹":''}}</h4>
          
                     <!-- <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()"> -->
         </td>
               </tr>   
+              <tr>
+                <td class="item-fore-color">
+                        <h4> Offer Price:&nbsp;  {{itemDetail[0].offerPrice|currency :"₹":''}}</h4>
+                </td>
+              </tr>
                   <tr> 
                     <td class="item-fore-color">       <!-- <mat-list-item  id = "hover" class="alert alert-info" role="alert" *ngIf="showSelected" style="position:fixed" > -->
                
                   <ul style="-webkit-text-fill-color: indigo"  >
-                      <li item-fore-color style="" >
+                      <li item-fore-color  >
                           <b> Color:&nbsp; {{itemDetail[0].color}}</b>
                         </li>
-                        <li >
-                          <b> Brand:&nbsp; {{itemDetail[0].brand}}</b>
-                        </li>
+                        
                       <li item-fore-color>
                         <b>    Delivery Charges:&nbsp; {{itemDetail[0].deliveryCharges |currency :"₹":''}}</b>
                           </li>
@@ -95,17 +115,15 @@
                
               </td>
                 </tr>
-                <tr>
-                <td class="item-fore-color">
-                        <h4> Offer Price:&nbsp;  {{itemDetail[0].offerPrice|currency :"₹":''}}</h4>
-                </td>
-              </tr>
-              <tr>
-              <td class="item-fore-color">
-                          Brand:&nbsp; {{itemDetail[0].brand}}
-
-              </td>
-            </tr>
+           <tr>
+             <td style="font-size: 10px;" class="item-fore-color">
+               <b>Paid Amount 
+                (Excluding Delivery Charges) :{{totalPaidAmount|currency :"₹":''}}
+                
+              </b>
+             </td>
+           </tr>
+            
             <tr>
               <td class="item-fore-color" >
                 <b>  Delivery:&nbsp; By Courier</b>

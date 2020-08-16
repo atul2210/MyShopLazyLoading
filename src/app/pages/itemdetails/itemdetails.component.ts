@@ -14,6 +14,7 @@ import { LoadingIndicatorServiceService } from '../../service/loading-indicator-
 import { LOCAL_STORAGE, WINDOW } from '@ng-toolkit/universal';
 
 import {ReactiveFormsModule,FormsModule,NgControl,  FormGroup,FormControl,ValidationErrors,Validator, Validators} from '@angular/forms'
+import { min } from 'rxjs/operators';
 
 
 declare var jquery:any;
@@ -52,7 +53,12 @@ loading:boolean=false;
 myform: FormGroup;
 sizes: FormControl;
 selecteditemId;
+minQty:number =1;
+maxQty:number=0;
+disableplus:boolean=false;
+disableminus:boolean=true;
 availableSizes:any[];
+totalPaidAmount:number=1;
   constructor(@Inject(WINDOW) private window: Window, @Inject(LOCAL_STORAGE) private localStorage: any,  public restProvider:ShoppingApiService,public HomepageComponent:HomepageComponent,private route:ActivatedRoute, private globals:Globals,
     private router:Router, private CartItemServiceService:CartItemServiceService,private inotify:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService,private itemService:itemService){
       loadingIndicatorService
@@ -114,7 +120,8 @@ GetItemDetails(itemId:string)
         this.availableQty = data.body.availableQty
         this.displayError=false;
         this.availableSizes=data.body.availableSize;
-        console.log(this.itemDetail);
+        this.maxQty=data.body.availableQty;
+        this.totalPaidAmount=this.offerprice;
     }
     else  
     {
@@ -149,7 +156,7 @@ GetItemDetails(itemId:string)
         let header = new HttpHeaders();
         header.set("Authorization","Bearer "+ idToken);
         
-      this.restProvider.addToCart(this.itemid,'1')
+      this.restProvider.addToCart(this.itemid,this.minQty.toString())
       
       .subscribe(
         data => 
@@ -193,6 +200,34 @@ private notifyTotalItem(totalItem:Inotify)
 onResize(event) {
   this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 2;
 }
+
+salequantityplus()
+{
+  this.minQty++;  
+  this.disableminus=false;
+  this.totalPaidAmount=this.offerprice*this.minQty;
+  if(this.minQty==this.maxQty)
+    {
+      this.disableplus=true;
+      
+    }
+    
+
+}
+salequantitminus()
+{
+  this.minQty--; 
+  this.disableplus=false; 
+  this.totalPaidAmount=this.offerprice*this.minQty;
+  if(this.minQty==1)
+    {
+       
+        this.disableminus=true;
+    }
+    
+
+}
+
 
 // get ItemidWithoutLogin():number 
 // {
