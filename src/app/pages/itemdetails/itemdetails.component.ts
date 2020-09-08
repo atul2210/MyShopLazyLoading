@@ -149,42 +149,50 @@ GetItemDetails(itemId:string)
   
   addToCart()
   {
-      const idToken= this.localStorage.getItem("id_token");
+   ///   const idToken= this.localStorage.getItem("id_token");
      
-      if(idToken)
-      {
-        let header = new HttpHeaders();
-        header.set("Authorization","Bearer "+ idToken);
-        
-      this.restProvider.addToCart(this.itemid,this.minQty.toString())
-      
+      //if(idToken)
+    //  {
+     //   let header = new HttpHeaders();
+    //    header.set("Authorization","Bearer "+ idToken);
+    let sessionvalue=localStorage.getItem("userSession");
+       
+      this.restProvider.addToCart(this.itemid,this.minQty.toString(),sessionvalue)
+    
       .subscribe(
         data => 
         { 
           this.inotify.totalCartItem = data.count; 
           this.notifyTotalItem(this.inotify);
+          if(sessionvalue===null)
+          {
+           
+           localStorage.setItem("userSession",data.sessionIdToken)
+          }
+          this.itemService.itemid=Number(this.itemid);
+          this.itemService.itemIdLogin=Number(this.itemid);
           this.router.navigateByUrl('/checkin');
        },
        err=>
        {
-        this.localStorage.removeItem("id_token");
-        this.localStorage.removeItem("expires_at");
-        this.localStorage.removeItem("fullName");
-        this.localStorage.removeItem("email"); 
-               this.router.navigateByUrl('/login');
+        // this.localStorage.removeItem("id_token");
+        // this.localStorage.removeItem("expires_at");
+        // this.localStorage.removeItem("fullName");
+        // this.localStorage.removeItem("email"); 
+         this.router.navigateByUrl('/login');
 
        }
        );
-      }
-      else{
-        this.localStorage.removeItem("id_token");
-        this.localStorage.removeItem("expires_at");
-        this.localStorage.removeItem("fullName");
-        this.localStorage.removeItem("email");
+     // }
+      // else{
+      //   this.localStorage.removeItem("id_token");
+      //   this.localStorage.removeItem("expires_at");
+      //   this.localStorage.removeItem("fullName");
+      //   this.localStorage.removeItem("email");
         this.itemService.itemid=Number(this.itemid);
         this.itemService.itemIdLogin=Number(this.itemid);
-        this.router.navigateByUrl('/login');
-      }
+      //   this.router.navigateByUrl('/login');
+      // }
   }
 
     private getColor(colorName:string)

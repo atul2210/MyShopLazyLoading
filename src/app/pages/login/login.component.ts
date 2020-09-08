@@ -76,17 +76,21 @@ export class LoginComponent implements OnInit {
           this.err="";
         ////  this.location.back();
         let itemid:number= this.itemService.itemIdLogin;
-            
+          
         if(itemid!==0)
         {
           if(itemid===undefined)
           this.router.navigateByUrl(`HomeComponent`);
           else
-          this.router.navigateByUrl(`/itemDetail/${itemid}`);
+         // this.router.navigateByUrl(`/itemDetail/${itemid}`);
+         this.router.navigateByUrl('PlaceOrder/');
+          this.http.dispSignInYes(true);
         }
         else
         {
-          this.router.navigateByUrl('')
+         // this.router.navigateByUrl('')
+         this.router.navigateByUrl("/PlaceOrder/");
+         this.http.dispSignInYes(true);
         }
         this.http.dispSignInYes(true);
        // this.router.navigateByUrl("checkin")

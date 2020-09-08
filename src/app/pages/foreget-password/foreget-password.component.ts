@@ -66,7 +66,7 @@ async SendMail()
           
           this.isOk =true;
           this.err=err;
-          console.log(err);
+         /// console.log(err);
           //this.router.navigateByUrl("/Error/"+"err" +"/logi/"+this.mobile);
         
         });

@@ -63,14 +63,14 @@ private displaySignInSubject = new Subject<boolean|true>();
   }
 
 
-addToCart(itemid:string,quantity:string): Observable<any>
+addToCart(itemid:string,quantity:string,usersession:string   ): Observable<any>
 {
   let querystring:string;
-  let id_token:string;
-
-  id_token=this.localStorage.getItem("id_token");
  
-  querystring = "?itemid=" + itemid+ "&quantity="+quantity+ "&sessionId=" + id_token ;
+  
+
+
+  querystring = "?itemid=" + itemid+ "&quantity="+quantity +"&UserSessioin=" +usersession ;
   this.uri=this.baseUrl+"/api/items/";
 
   return this.http.post(
@@ -86,7 +86,7 @@ getCheckedInItem(sessionId:string):Observable<any>
   ////let sessionToken:string
   
   this.uri=this.baseUrl+"/api/items/";
-
+ 
   const params = new HttpParams().set('userSession', sessionId);
   return this.http.get<checkedInItemsArray[]>(
   this.uri+"getcheckedinItem", { observe: 'response', params}).pipe(
@@ -375,7 +375,7 @@ GetAddress(sessionId:string):Observable<any>
   
   this.uri=this.baseUrl+"/api/User/";
 
-  const params = new HttpParams().set('usersession', sessionId);
+  const params = new HttpParams().set('email', sessionId);
   return this.http.get<checkedInItemsArray[]>(
   this.uri+"Address", { observe: 'response', params}).pipe(
  // catchError(this.handleError )
@@ -428,6 +428,26 @@ public dispSignInNo()
 {
   return this.displaySignInSubject.asObservable();
 }
+
+public  GetPaymentOptions():Observable<any> 
+{
+ 
+  this.uri=this.baseUrl+"/api/items/PaymenOptions"
+   return this.http.get(this.uri, { observe: 'response'}).pipe()
+    
+  // .shareReplay()
+  // catchError(this.handleError )
+   //,
+   
+   
+};
+
+
+
+
+
+
+
 
 }
 

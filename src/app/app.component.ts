@@ -73,7 +73,7 @@ public ngOnInit()
 
        // }
         this.categoryItemArray = this.categoryItemArray.concat(categoryItemArray.results);
-        console.log('fffff',this.categoryItemArray );
+       //// console.log('fffff',this.categoryItemArray );
         
      } 
       

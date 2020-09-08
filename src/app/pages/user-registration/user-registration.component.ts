@@ -62,7 +62,7 @@ export class UserRegistrationComponent implements OnInit {
     {
       this.ResState=res.body;
       this.states=this.ResState;
-      console.log("states",this.states)
+      //console.log("states",this.states)
       
     });
 
@@ -144,7 +144,7 @@ export class UserRegistrationComponent implements OnInit {
           (err) => 
           {
           
-            console.log(err);
+        ///    console.log(err);
             this.router.navigateByUrl("/Error/"+err.error.error +"/regis/"+data.mobile )
           });
     }
@@ -158,7 +158,7 @@ export class UserRegistrationComponent implements OnInit {
     .subscribe((res:Response)=>
     {
         this.citeis=res.body
-        console.log(this.citeis)
+     ////   console.log(this.citeis)
     });
   }
 

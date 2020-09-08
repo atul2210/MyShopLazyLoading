@@ -3,15 +3,21 @@ import { CommonModule } from '@angular/common';
 import {CheckinComponent} from './checkin.component';
 import { Routes,RouterModule } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { PaymentOptionsComponent } from './PaymentOPtions/Payment/payment-options/payment-options.component';
+import {PaymentOptionService} from './Payment-Options-Service';
+import { FormsModule } from '@angular/forms';
+
 
 const routes: Routes = [{ path: '', component: CheckinComponent},
+{ path: 'pmt', component: PaymentOptionsComponent}
 
 ];
 @NgModule({
-  declarations: [CheckinComponent],
+  declarations: [CheckinComponent, PaymentOptionsComponent],
   imports: [
-    CommonModule,NgxDatatableModule,
+    CommonModule,NgxDatatableModule,FormsModule,
     RouterModule.forChild(routes)
-  ]
+  ],
+  providers:[PaymentOptionService]
 })
 export class CheckintModule { }

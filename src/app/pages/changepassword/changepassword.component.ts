@@ -80,7 +80,7 @@ export class ChangepasswordComponent implements OnInit {
       err=>{
         
         this.err=err.error;
-        console.log("error ",err.body["error"]);
+     //   console.log("error ",err.body["error"]);
       }
     
     )

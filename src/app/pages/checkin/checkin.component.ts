@@ -72,10 +72,12 @@ export class CheckinComponent implements OnInit {
 GetCheckedInItems()
 {
   let userSessionid:string;  
-  userSessionid = this.localStorage.getItem("id_token"); 
+  userSessionid = this.localStorage.getItem("userSession"); 
+  
   if(userSessionid!==null)
   {
-      this.ShoppingApiService.getCheckedInItem(userSessionid)
+   
+    this.ShoppingApiService.getCheckedInItem(userSessionid)
       .subscribe(
         (data:checkedInItemsArray) => { 
         
@@ -90,11 +92,11 @@ GetCheckedInItems()
         // }
         
         this.rows = data.body; //this.cartItems;
-        
+      //  console.log(this.rows);
        
         this.itemnotify.totalCartItem = this.rows.length;
         this.getSum(this.rows);
-        console.log(this.rows);
+      //  console.log(this.rows);
         return this.rows;
        
         });
@@ -118,7 +120,7 @@ document.getElementById("demo").innerHTML = this.rows.reduce(this.getSum);
  public RemoveItems(itemid:string,quantity:string,checkinid:string)
   {
    
-    const idToken= this.localStorage.getItem("id_token");
+    const idToken=localStorage.getItem("userSession");;
       
     if(idToken)
     {
@@ -150,6 +152,8 @@ private notify():void
 
  placeOrder()
 {
+  this.route.navigateByUrl('checkin/pmt');
+  /*
   let storage:string = this.localStorage.getItem("id_token");
   let EmailId:string = this.localStorage.getItem("email");
 
@@ -184,6 +188,7 @@ private notify():void
         //);
        // }
     }
+    */
 
 
   }
@@ -191,7 +196,7 @@ private notify():void
   onPage(event) {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      console.log('paged!', event);
+     // console.log('paged!', event);
     }, 100);
   }
 fetch(cb) {

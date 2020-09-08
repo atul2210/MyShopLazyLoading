@@ -53,7 +53,8 @@ export class PlaceOrderComponent implements OnInit {
     let userform:FormGroup;
     this.createFormControls();
     this.createForm();
-    this.GetAddress(this.localStorage.getItem("id_token"));
+    this.CheckforLogin();
+    this.GetAddress(this.localStorage.getItem("email"));
     this.subscription= this.service.getItem()
     .subscribe( 
         ttlItems=>
@@ -80,9 +81,10 @@ export class PlaceOrderComponent implements OnInit {
   }
   
 
-  GetAddress(sessionId:string)
+  GetAddress(email:string)
   {
-    this.service.GetAddress(this.currentsession)
+    alert(email);
+    this.service.GetAddress(email)
     .subscribe((res:Response)=>
     {
      
@@ -139,7 +141,7 @@ export class PlaceOrderComponent implements OnInit {
 
 
     
-      this.service.paymentreceive(this.currentsession,regis)
+      this.service.paymentreceive(localStorage.getItem("userSession"),regis)
         .subscribe((res:Response) =>
         {
         
@@ -265,6 +267,49 @@ export class PlaceOrderComponent implements OnInit {
             console.log('cities9999 ',this.cities)
         });
       }
+
+      CheckforLogin()
+      {
+
+        let storage:string = this.localStorage.getItem("id_token");
+        let EmailId:string = this.localStorage.getItem("email");
+   
+      if(storage==null )
+      {
+        this.route.navigateByUrl('/login');
+      }
+  //   else
+  //   {
+       
+  //       this.route.navigateByUrl("/PlaceOrder/");
+  //       if(EmailId!=='undefined')
+  //       {
+  //         this.service.paymentreceive(EmailId,localstorage,this.rows)
+  //         .subscribe((res:Response) =>
+  //         {
+          
+  //           //if status code is unauthorized.. need to redirect login page with error message
+  //         },
+  //         err => 
+  //         {
+  //           if(err.status!==200)
+  //           {
+  //             localStorage.removeItem("id_token");
+  //             this.route.navigateByUrl('/login')
+  //           }
+
+  //         }
+       
+        
+  //       );
+  //      }
+  // /}
+
+
+      }
+
+
+
 
 
       ngOnDestroy()
