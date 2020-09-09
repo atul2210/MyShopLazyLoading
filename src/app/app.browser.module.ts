@@ -58,6 +58,9 @@ import {activateuserservce} from './service/ActivateUserService';
 import { FirstTimeUserComponent } from './pages/first-time-user/first-time-user.component';
 import {ReturnPolicyComponent} from './pages/return-policy/return-policy.component';
 import { AppModule } from './app.module';
+import {PaymentOptionService} from './service/Payment-Options-Service';
+
+
  @NgModule({
   imports: [
     FlexLayoutModule,  ReactiveFormsModule,HttpClientModule,RouterModule,NgxDatatableModule,
@@ -156,7 +159,7 @@ import { AppModule } from './app.module';
       multi:true
   
     },
-    
+    PaymentOptionService
   
   ],
     

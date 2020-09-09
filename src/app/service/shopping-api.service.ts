@@ -321,10 +321,10 @@ public async ResetPassword(email:string):Promise<any>
 
  
   
-  public paymentreceive(session:string,registration:registration)
+  public paymentreceive(session:string,registration:registration,paymentOption:number)
   {
     
-      this.uri=this.baseUrl+"/api/items/CheckoutPaymentReceived?UserSession="+session;
+      this.uri=this.baseUrl+"/api/items/CheckoutPaymentReceived?UserSession="+session+"&PaymentOption="+paymentOption.toString();
       var headers = new HttpHeaders();
       headers.append('Content-Type', 'application/form-data');
       return this.http.post(this.uri,registration,

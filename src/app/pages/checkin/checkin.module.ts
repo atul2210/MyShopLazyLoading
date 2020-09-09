@@ -4,7 +4,7 @@ import {CheckinComponent} from './checkin.component';
 import { Routes,RouterModule } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PaymentOptionsComponent } from './PaymentOPtions/Payment/payment-options/payment-options.component';
-import {PaymentOptionService} from './Payment-Options-Service';
+///////import {PaymentOptionService} from './Payment-Options-Service';
 import { FormsModule } from '@angular/forms';
 
 
@@ -18,6 +18,6 @@ const routes: Routes = [{ path: '', component: CheckinComponent},
     CommonModule,NgxDatatableModule,FormsModule,
     RouterModule.forChild(routes)
   ],
-  providers:[PaymentOptionService]
+  ////providers:[PaymentOptionService]
 })
 export class CheckintModule { }

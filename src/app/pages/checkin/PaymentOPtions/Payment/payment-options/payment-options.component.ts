@@ -3,7 +3,7 @@ import {ShoppingApiService} from '../../../../../service/shopping-api.service';
 import { HttpHeaders } from '@angular/common/http';
 import { LOCAL_STORAGE, WINDOW } from '@ng-toolkit/universal';
 import { Router } from '@angular/router';
-import {PaymentOptionService} from '../../../Payment-Options-Service'
+import {PaymentOptionService} from './../../../../../service/Payment-Options-Service';
 
 @Component({
   selector: 'app-payment-options',
@@ -13,6 +13,7 @@ import {PaymentOptionService} from '../../../Payment-Options-Service'
 export class PaymentOptionsComponent implements OnInit {
 data:any;
 optradio:any;
+
   constructor(private pmtservice:PaymentOptionService,private router:Router,private service:ShoppingApiService,@Inject(WINDOW) private window: Window, @Inject(LOCAL_STORAGE) private localStorage: any) { 
      
 
@@ -32,6 +33,7 @@ optradio:any;
         {
           
             this.data=res;
+            console.log(this.data);
         }),
         
        err=>

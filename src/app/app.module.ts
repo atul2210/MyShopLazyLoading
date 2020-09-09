@@ -51,7 +51,7 @@ import{itemService} from '../app/pages/itemdetails/itemdetails.service';
 import {activateuserservce} from './service/ActivateUserService';
 import { FirstTimeUserComponent } from './pages/first-time-user/first-time-user.component';
 import { ReturnPolicyComponent } from './pages/return-policy/return-policy.component';
-
+import {PaymentOptionService} from './service/Payment-Options-Service';
 
  @NgModule({
   declarations: [
@@ -170,7 +170,7 @@ import { ReturnPolicyComponent } from './pages/return-policy/return-policy.compo
       multi:true
   
     },
-    
+    PaymentOptionService    
     
   ],
     

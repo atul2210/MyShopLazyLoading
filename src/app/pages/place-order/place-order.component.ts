@@ -9,6 +9,11 @@ import { LOCAL_STORAGE } from '@ng-toolkit/universal'
 import { Subscription } from "rxjs/Subscription";
 import { Inotify,itemNotify } from '../../pages/itemdetails/item-notify';
 import { Console } from 'console';
+import {PaymentOptionService} from '../../service/Payment-Options-Service';
+
+
+
+
 @Component({
   selector: 'app-place-order',
   templateUrl: './place-order.component.html',
@@ -36,7 +41,7 @@ export class PlaceOrderComponent implements OnInit {
   selectedState;
   editSelectedCity;
   editselectedState;
-  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, public totalItem:itemNotify,private singleton:SingletonService,private route:Router,private active:ActivatedRoute,private service:ShoppingApiService) { }
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any, public totalItem:itemNotify,private singleton:SingletonService,private route:Router,private active:ActivatedRoute,private service:ShoppingApiService,private pmtservice:PaymentOptionService) { }
   
   get currentsession():string
   {
@@ -83,7 +88,7 @@ export class PlaceOrderComponent implements OnInit {
 
   GetAddress(email:string)
   {
-    alert(email);
+   
     this.service.GetAddress(email)
     .subscribe((res:Response)=>
     {
@@ -133,7 +138,7 @@ export class PlaceOrderComponent implements OnInit {
       regis.pin= this.myform.controls["pin"].value;
       regis.firstName= this.myform.controls["username"].value;
       regis.state= this.myform.controls["mystate"].value;
-     
+     regis.emailId=this.localStorage.getItem("email");
       regis.PrivacyAgreed=ee;
 
      
@@ -141,7 +146,7 @@ export class PlaceOrderComponent implements OnInit {
 
 
     
-      this.service.paymentreceive(localStorage.getItem("userSession"),regis)
+      this.service.paymentreceive(this.localStorage.getItem("userSession"),regis,this.pmtservice.GetPaymentOption)
         .subscribe((res:Response) =>
         {
         
