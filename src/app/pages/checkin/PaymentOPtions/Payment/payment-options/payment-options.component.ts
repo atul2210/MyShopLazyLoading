@@ -4,7 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { LOCAL_STORAGE, WINDOW } from '@ng-toolkit/universal';
 import { Router } from '@angular/router';
 import {PaymentOptionService} from './../../../../../service/Payment-Options-Service';
-
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-payment-options',
   templateUrl: './payment-options.component.html',
@@ -13,7 +13,7 @@ import {PaymentOptionService} from './../../../../../service/Payment-Options-Ser
 export class PaymentOptionsComponent implements OnInit {
 data:any;
 optradio:any;
-
+isSubmitted=false;
   constructor(private pmtservice:PaymentOptionService,private router:Router,private service:ShoppingApiService,@Inject(WINDOW) private window: Window, @Inject(LOCAL_STORAGE) private localStorage: any) { 
      
 
@@ -103,9 +103,17 @@ optradio:any;
 
 
  }
- MakePayment()
+ MakePayment(form:NgForm)
  {
-  this.router.navigateByUrl("/PlaceOrder/");
+
+  this.isSubmitted = true;
+  if(!form.valid) {
+    return false;
+  } else {
+    this.router.navigateByUrl("/PlaceOrder/");
+  }
+
+  
 
  }  
 

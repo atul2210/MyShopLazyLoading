@@ -1,20 +1,21 @@
 <!-- <form  class="container" [formGroup]="myform" 
 role="form"  > -->
-<form>
+<form #pmtOption="ngForm" (submit)="MakePayment(pmtOption)" novalidate>
 <div class="container"  >
   
     <div *ngFor='let btndata of data.body ' >
     <label class="form-check-label">
-        <input type="radio"  #option="ngModel" class="form-check-input" required [value]= 'btndata.id' id ='btndata.id' [(ngModel)]="optradio" name="option"  (change)="onItemChange($event.target.value)">{{btndata.paymentTypeName}}
+        <input type="radio"  class="form-check-input" ngModel required [value]= 'btndata.id'  [(ngModel)]="optradio" name="option"  (change)="onItemChange($event.target.value)">{{btndata.paymentTypeName}}
       </label>
+     
     </div>
-    <span class="help-block" *ngIf="option.errors?.required">
-        Please Select Payment Option.
+    <span class="text-danger" *ngIf="isSubmitted && pmtOption.invalid">
+      Please Select Payment Option.
 
-    </span>
+  </span>
   <br><br>
     <div class=" pull-right">
-      <button class="btn-success" (click)= "MakePayment();" style="width: auto;">Proceed</button>
+      <button type= "submit" class="btn-success" style="width: auto;">Proceed</button>
 
     </div>
 <br>
