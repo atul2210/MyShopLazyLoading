@@ -11,7 +11,7 @@
 
     <a [routerLink]="['']" class="ml-1" > <i class="fa fa-home fa-fw aria-hidden=true" aria-hidden="true"></i></a>
     <div class="mobile-center d-inline">
-          <input type="text"  style="line-height:1.5" placeholder="Search" class="input:focus " name="search" [(ngModel)]="itemname" >
+          <input type="text"  style="line-height:1.5" placeholder="Search" class="input:focus " name="search" [(ngModel)]="itemname" (keyup.enter)="searchResult()">
           <a style="width:30px;"  class="cur btn " (click)="searchResult()" ><i class="fa fa-search pull-left"></i></a>
       
           
