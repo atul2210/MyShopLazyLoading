@@ -3,7 +3,7 @@ role="form"  > -->
 <form #pmtOption="ngForm" (submit)="MakePayment(pmtOption)" novalidate>
 <div class="container"  >
   
-    <div *ngFor='let btndata of data.body ' >
+    <div *ngFor='let btndata of data' >
     <label class="form-check-label">
         <input type="radio"  class="form-check-input" ngModel required [value]= 'btndata.id'  [(ngModel)]="optradio" name="option"  (change)="onItemChange($event.target.value)">{{btndata.paymentTypeName}}
       </label>
