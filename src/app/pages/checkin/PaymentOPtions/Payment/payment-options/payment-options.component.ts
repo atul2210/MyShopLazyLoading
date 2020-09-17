@@ -32,8 +32,8 @@ isSubmitted=false;
       .subscribe((res:Response)=>
         {
           
-            this.data=res;
-            console.log(this.data);
+            this.data=res.body
+            
         }),
         
        err=>
