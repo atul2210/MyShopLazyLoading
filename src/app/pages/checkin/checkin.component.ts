@@ -48,7 +48,7 @@ export class CheckinComponent implements OnInit {
   loading:boolean=false;
   @ViewChild('myTable',{static:false}) table: any;
 
-  rows: any[] = [];
+  rows: any;
   expanded: any = {};
   timeout: any;
   OfferPriceSum:number=0;
@@ -69,7 +69,7 @@ export class CheckinComponent implements OnInit {
    
   } 
 
-GetCheckedInItems()
+async GetCheckedInItems()
 {
   let userSessionid:string;  
   userSessionid = this.localStorage.getItem("userSession"); 
@@ -77,7 +77,7 @@ GetCheckedInItems()
   if(userSessionid!==null)
   {
    
-    this.ShoppingApiService.getCheckedInItem(userSessionid)
+    await this.ShoppingApiService.getCheckedInItem(userSessionid)
       .subscribe(
         (data:checkedInItemsArray) => { 
         
