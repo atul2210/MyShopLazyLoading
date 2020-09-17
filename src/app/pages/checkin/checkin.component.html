@@ -177,13 +177,17 @@
 
         </ngx-datatable>
   <br>
-            <p class ="text-center">Total Amount  -  {{rows[0].totaPrice |currency:'INR':'symbol-narrow'}}</p>
-            <p class="text-center ">Total Paid Amount   {{rows[0].totalPaidAmunt|currency:'INR':'symbol-narrow'}}"</p>
+  <div *ngFor="let row of rows;let indexOfelement=index;">
+    <div *ngIf="indexOfelement==0">
+            <p class ="text-center">Total Amount  -  {{row.totaPrice |currency:'INR':'symbol-narrow'}}</p>
+            <p class="text-center ">Total Paid Amount   {{row.totalPaidAmunt|currency:'INR':'symbol-narrow'}}"</p>
  
-            <p class="text-center ">You saved   {{rows[0].totaPrice- rows[0].totalPaidAmunt |currency:'INR':'symbol-narrow'}}"</p>
- 
+            <p class="text-center ">You saved   {{rows.totaPrice- rows[0].totalPaidAmunt |currency:'INR':'symbol-narrow'}}"</p>
+          </div>
+          </div>
+          <div>
             <a class="btn btn-success mb-2"  (click)= "placeOrder();" >Place Order</a>
             <a  class="btn btn-danger pull-right"(click)="cancel()">Back</a>
-        
+     
          
       </div>
