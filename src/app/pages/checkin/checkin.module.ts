@@ -6,10 +6,10 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PaymentOptionsComponent } from './PaymentOPtions/Payment/payment-options/payment-options.component';
 ///////import {PaymentOptionService} from './Payment-Options-Service';
 import { FormsModule } from '@angular/forms';
-
+import {authguard} from '../../service/auth-guard';
 
 const routes: Routes = [{ path: '', component: CheckinComponent},
-{ path: 'pmt', component: PaymentOptionsComponent}
+{ path: 'pmt', component: PaymentOptionsComponent,canActivate:[authguard]}
 
 ];
 @NgModule({

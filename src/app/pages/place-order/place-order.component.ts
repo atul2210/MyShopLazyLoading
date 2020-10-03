@@ -20,7 +20,7 @@ import {PaymentOptionService} from '../../service/Payment-Options-Service';
   styleUrls: ['./place-order.component.css']
 })
 export class PlaceOrderComponent implements OnInit {
-  myform: FormGroup;
+  PlaceOrderForm: FormGroup;
   username:FormControl;
   userMiddleName:FormControl;
   userLastName:FormControl;
@@ -94,12 +94,12 @@ export class PlaceOrderComponent implements OnInit {
     {
      
    
-      this.myform.controls["userMiddleName"].setValue(res.body["middleName"]==='undefined'?'':res.body["middleName"]);
-      this.myform.controls["userLastName"].setValue(res.body["lastName"]);
-      this.myform.controls["address"].setValue(res.body["address"]);
-     // this.myform.controls["city"].setValue(res.body["city"]);
-      this.myform.controls["pin"].setValue(res.body["pin"]);
-      this.myform.controls["username"].setValue(res.body["firstName"]);
+      this.PlaceOrderForm.controls["userMiddleName"].setValue(res.body["middleName"]==='undefined'?'':res.body["middleName"]);
+      this.PlaceOrderForm.controls["userLastName"].setValue(res.body["lastName"]);
+      this.PlaceOrderForm.controls["address"].setValue(res.body["address"]);
+     // this.PlaceOrderForm.controls["city"].setValue(res.body["city"]);
+      this.PlaceOrderForm.controls["pin"].setValue(res.body["pin"]);
+      this.PlaceOrderForm.controls["username"].setValue(res.body["firstName"]);
       
       this.editselectedState=res.body["state"]
      
@@ -130,14 +130,14 @@ export class PlaceOrderComponent implements OnInit {
     
     if(this.currentsession!=='undefined')
     {
-      //alert(this.myform.controls["userMiddleName"].value);
-      regis.middleName =  this.myform.controls["userMiddleName"].value==='undefined'?'':this.myform.controls["userMiddleName"].value;
-      regis.lastName= this.myform.controls["userLastName"].value;
-      regis.address= this.myform.controls["address"].value;
-      regis.city= this.myform.controls["city"].value;
-      regis.pin= this.myform.controls["pin"].value;
-      regis.firstName= this.myform.controls["username"].value;
-      regis.state= this.myform.controls["mystate"].value;
+      //alert(this.PlaceOrderForm.controls["userMiddleName"].value);
+      regis.middleName =  this.PlaceOrderForm.controls["userMiddleName"].value==='undefined'?'':this.PlaceOrderForm.controls["userMiddleName"].value;
+      regis.lastName= this.PlaceOrderForm.controls["userLastName"].value;
+      regis.address= this.PlaceOrderForm.controls["address"].value;
+      regis.city= this.PlaceOrderForm.controls["city"].value;
+      regis.pin= this.PlaceOrderForm.controls["pin"].value;
+      regis.firstName= this.PlaceOrderForm.controls["username"].value;
+      regis.state= this.PlaceOrderForm.controls["mystate"].value;
      regis.emailId=this.localStorage.getItem("email");
       regis.PrivacyAgreed=ee;
 
@@ -176,7 +176,7 @@ export class PlaceOrderComponent implements OnInit {
 
 
   createForm() {
-    this.myform = new FormGroup({
+    this.PlaceOrderForm = new FormGroup({
       //name: new FormGroup({
       
       address:this.address,
@@ -209,13 +209,13 @@ export class PlaceOrderComponent implements OnInit {
       {
         this.isEdited=true;
         this.isDisplayButton =false;
-        this.myform.controls["address"].enable();
-        this.myform.controls["city"].enable();
-        this.myform.controls["pin"].enable();
-        this.myform.controls["mystate"].enable();
-        this.myform.controls["username"].enable();
-        this.myform.controls["userMiddleName"].enable();
-        this.myform.controls["userLastName"].enable();
+        this.PlaceOrderForm.controls["address"].enable();
+        this.PlaceOrderForm.controls["city"].enable();
+        this.PlaceOrderForm.controls["pin"].enable();
+        this.PlaceOrderForm.controls["mystate"].enable();
+        this.PlaceOrderForm.controls["username"].enable();
+        this.PlaceOrderForm.controls["userMiddleName"].enable();
+        this.PlaceOrderForm.controls["userLastName"].enable();
 
         this.focusonAddress.nativeElement.focus();
        
@@ -225,13 +225,13 @@ export class PlaceOrderComponent implements OnInit {
       SaveAddress()
       {
         let edit = new EditAddress();
-        edit.middleName =  this.myform.controls["userMiddleName"].value==='undefined'?'':this.myform.controls["userMiddleName"].value;
-        edit.lastName= this.myform.controls["userLastName"].value;
-        edit.address= this.myform.controls["address"].value;
-        edit.city= this.myform.controls["city"].value;
-        edit.pin= this.myform.controls["pin"].value;
-        edit.firstName= this.myform.controls["username"].value;
-        edit.state= this.myform.controls["mystate"].value;
+        edit.middleName =  this.PlaceOrderForm.controls["userMiddleName"].value==='undefined'?'':this.PlaceOrderForm.controls["userMiddleName"].value;
+        edit.lastName= this.PlaceOrderForm.controls["userLastName"].value;
+        edit.address= this.PlaceOrderForm.controls["address"].value;
+        edit.city= this.PlaceOrderForm.controls["city"].value;
+        edit.pin= this.PlaceOrderForm.controls["pin"].value;
+        edit.firstName= this.PlaceOrderForm.controls["username"].value;
+        edit.state= this.PlaceOrderForm.controls["mystate"].value;
         edit.emailId=this.localStorage.getItem("email");
        
 
