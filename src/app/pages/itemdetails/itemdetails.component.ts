@@ -16,7 +16,6 @@ import { LOCAL_STORAGE, WINDOW } from '@ng-toolkit/universal';
 import {ReactiveFormsModule,FormsModule,NgControl,  FormGroup,FormControl,ValidationErrors,Validator, Validators} from '@angular/forms'
 import { min } from 'rxjs/operators';
 
-
 declare var jquery:any;
 declare var $ :any;
 
@@ -60,7 +59,11 @@ disableminus:boolean=true;
 availableSizes:any[];
 totalPaidAmount:number=1;
   constructor(@Inject(WINDOW) private window: Window, @Inject(LOCAL_STORAGE) private localStorage: any,  public restProvider:ShoppingApiService,public HomepageComponent:HomepageComponent,private route:ActivatedRoute, private globals:Globals,
-    private router:Router, private CartItemServiceService:CartItemServiceService,private inotify:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService,private itemService:itemService){
+    private router:Router, private CartItemServiceService:CartItemServiceService,private inotify:itemNotify,private loadingIndicatorService: LoadingIndicatorServiceService,private itemService:itemService
+
+    
+    
+    ){
       loadingIndicatorService
       .onLoadingChanged
       .subscribe(isLoading => this.loading = isLoading);
@@ -105,9 +108,10 @@ GetItemDetails(itemId:string)
       if(data.body.availableQty>0) 
       {
           
-        data.body.image1= data.body.image1;
+       // data.body.image1= data.body.image1;
       
         this.itemDetail= Array.of(data.body)
+        console.log(this.itemDetail);
       // //   ///this.colorDetail =data.body.availableColor.split(";")
       // //  // this.colorname=this.colorDetail[0]
         this.price = data.body.price
@@ -247,6 +251,20 @@ salequantitminus()
 //   this.itemService.itemid=Number(this.itemid);
 //   alert(`call from Setter: ${this.itemid}` );
 // }
+imgout:string;
+private hoverSmallImage(img:string)
+{
+  
+  this.imgout= this.itemDetail[0].image1
+  this.itemDetail[0].image1=img;
+}
 
+private outSmallImage()
+{
+ 
+  this.itemDetail[0].image1=this.imgout;
+ 
+
+}
 
 }

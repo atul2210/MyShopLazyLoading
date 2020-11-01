@@ -11,7 +11,19 @@
   <!-- <div  class="card"> -->
   <!-- <mat-grid-list  rowHeight="2:0.5" [cols]="breakpoint" (window:resize)="onResize($event)" *ngFor="let item of itemDetail;" >-->
       <div class="row" *ngFor="let item of itemDetail"> 
-          <div class="col-md-6 form-group" >
+        
+        
+        <div class="col-md-2 "  >
+          <div class ="mt-2 ml-2" *ngFor="let smimg of item.imageSmall3" >
+            <img  height='40px' width='40px'  [src]="smimg" (mouseover)= 'hoverSmallImage(smimg);'  >
+          </div>
+          
+          
+        </div> 
+
+
+
+        <div class="col-md-4 " >
 
                 <ngx-image-zoom
                 [thumbImage]=item.image1

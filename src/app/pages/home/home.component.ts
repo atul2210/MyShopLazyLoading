@@ -2,7 +2,7 @@ import { Component, OnInit,Pipe, PipeTransform  } from '@angular/core';
 import {SlidersComponent} from '../../pages/sliders/sliders.component';
 import {ShoppingApiService} from '../../service/shopping-api.service';
 import {responseData} from '../../model/pagedata'
-import {BrowserModule, DomSanitizer, SafeHtml} from '@angular/platform-browser'
+import {BrowserModule, DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import {SearchServiceService} from '../../service/search-service.service';
 import { LoadingIndicatorServiceService } from '../../service/loading-indicator-service.service';
 import { Observable } from 'rxjs';
