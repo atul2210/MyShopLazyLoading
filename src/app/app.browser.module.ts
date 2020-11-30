@@ -104,6 +104,8 @@ import {PaymentOptionService} from './service/Payment-Options-Service';
       {path: 'NewUserActivate', loadChildren: () => import('../app/pages/new-user-activate/new-usre-activate.module').then(m => m.NewUserActivateModule)},
 
       {path:'ReturnPolicy',component:ReturnPolicyComponent},
+      {path: 'Admin', loadChildren: () => import('../app/pages/admin/admin.module').then(m => m.Adminmodule)},
+
       {path:'**',component:PageNotFoundComponentComponent}
   
       ],{onSameUrlNavigation: 'reload'} ),
