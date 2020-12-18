@@ -59,7 +59,7 @@ constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private http: Http
    formData.append('sizeId',upld.sizeId.toString());
    formData.append('availableQty',upld.initialQty.toString());
    formData.append('supplierId',upld.supplierId.toString());
-
+   formData.append('brand',upld.brand);
    
    console.log(formData);
     ///formData.append('file', fileToUpload);
