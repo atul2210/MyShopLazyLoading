@@ -38,9 +38,14 @@ constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private http: Http
   {
     
     const formData = new FormData();
+    console.log(fileToUpload);
     
+    for (let i = 0; i < fileToUpload.length; i++) {
+      // this.upload(i, this.selectedFiles[i]);
+      formData.append(fileToUpload[i].name, fileToUpload[i]);
+  }
 
-   formData.append('file', fileToUpload, fileToUpload.name);
+  /// formData.append('file', fileToUpload, fileToUpload.name);
   
    formData.append('ChileMenuId',upld.ChileMenuId.toString() );
    formData.append('GroupId',upld.GroupId.toString()); 
@@ -53,11 +58,12 @@ constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private http: Http
    formData.append('price',upld.price.toString());
    formData.append('sizeId',upld.sizeId.toString());
    formData.append('availableQty',upld.initialQty.toString());
-   
+   formData.append('supplierId',upld.supplierId.toString());
+
    
    console.log(formData);
     ///formData.append('file', fileToUpload);
-    this.uri=this.baseUrl+"/api/item/AddNewItem";
+    this.uri=this.baseUrl+"/api/item/UploadNewImages";
     return this.http.post<uploadneitem>(this.uri, formData, {reportProgress: true,responseType: 'json', observe: 'events'});
     
    /// const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {

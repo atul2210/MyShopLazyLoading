@@ -49,7 +49,7 @@ export class AddItemComponent implements OnInit {
  
 
   fileInfos: Observable<any>;
-
+files:File[]=[];
 
   @Output() public onUploadFinished = new EventEmitter();
   upld = new uploadneitem();
@@ -140,6 +140,7 @@ debugger;
 
  //// let fileToUpload = <File>files[files.length];
    ////  this.adminapiservice.UploadFile(fileToUpload,this.upld)
+    // this.adminapiservice.UploadFile(fileToUpload,this.upld)
      this.adminapiservice.UploadFile(fileToUpload,this.upld)
     .subscribe(event =>
     {
@@ -176,12 +177,14 @@ debugger;
     this.message = '';
   
     for (let i = 0; i < this.selectedFiles.length; i++) {
-      this.upload(i, this.selectedFiles[i]);
+     // this.upload(i, this.selectedFiles[i]);
     }
+     this.upload();
   }
 
 
-  upload(idx, file) {
+  ////async upload(idx, file) {
+    async upload() {
     this.upld.ChileMenuId=+this.selectmainSubMenu;
     this.upld.GroupId=0;
     this.upld.colorId=+this.selectColor
@@ -194,20 +197,22 @@ debugger;
     this.upld.sizeId=+this.selectSize;
     this.upld.supplierId=+this.selectSupplier;
 
-
-    this.progressInfos[idx] = { value: 0, fileName: file.name };
-  
-    this.adminapiservice.UploadFile(file,this.upld).subscribe(
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      // this.upload(i, this.selectedFiles[i]);
+    
+    this.progressInfos[i] = { value: 0, fileName: this.selectedFiles[i].name };
+  }
+    await this.adminapiservice.UploadFile(this.selectedFiles,this.upld).subscribe(
       event => {
         if (event.type === HttpEventType.UploadProgress) {
-          this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
+          this.progressInfos[0].value = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
           /////this.fileInfos = this.uploadService.getFiles();
         }
       },
       err => {
-        this.progressInfos[idx].value = 0;
-        this.message = 'Could not upload the file:' + file.name;
+        this.progressInfos[0].value = 0;
+        //this.message = 'Could not upload the file:' + file.name;
       });
   }
 
