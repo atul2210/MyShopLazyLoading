@@ -87,6 +87,7 @@ private CreateFromGroup()
 
 
 }
+unamePattern = "^[0-9]*$";
 createFormControls() {
   this.supplier= new  FormControl('',Validators.required);
   this.itemdescription  = new FormControl('',Validators.required);
@@ -94,13 +95,15 @@ createFormControls() {
   //this.category = new FormControl('',Validators.required);
   this.mainmenu = new FormControl('',Validators.required);
   this.submenu = new FormControl('',Validators.required);
-  this.price = new FormControl('',Validators.required);
-  this.offerprice = new FormControl('',Validators.required);
+  this.price = new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]);
+  
+
+  this.offerprice = new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]);
   this.color = new FormControl('',Validators.required);
-  this.deliverycharges = new FormControl('',Validators.required);
+  this.deliverycharges = new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]);
   this.uploadimage = new FormControl('',Validators.required);
   this.brandname = new FormControl('',Validators.required);
-  this.quantity= new FormControl('',Validators.required);
+  this.quantity= new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$")]);
   this.itemname= new FormControl('',Validators.required);
 }
 

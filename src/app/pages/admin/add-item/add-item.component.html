@@ -1,23 +1,54 @@
 <div class ="" [formGroup]="admingroup" role="form">
+
     <div class="row">
         <div class="col-md-6">
+          <div    [ngClass]="{
+            'has-danger': supplier.invalid && (supplier.dirty || supplier.touched),
+            'has-success': supplier.valid && (supplier.dirty || supplier.touched)
+          }"> 
           <label>Supplier</label>
           <select class="form-control form-control-sm" formControlName="supplier"  [(ngModel)]="selectSupplier">
           <option *ngFor="let supplier of supps" [value]="supplier.supplierId">
             {{supplier.supFirstName}}
           </option>
           </select>
+       
+
+        <div class="was-validated"
+           *ngIf="supplier.errors && (supplier.dirty || supplier.touched ) ">
+         <p *ngIf="supplier.errors.required" class ="text-danger">Supplier is required</p>
+         
         </div>
+      </div>
+    </div>
+
         <div class="col-md-6">
-               
+        
+            <div    [ngClass]="{
+              'has-danger': deliverycharges.invalid && (deliverycharges.dirty || deliverycharges.touched),
+              'has-success': deliverycharges.valid && (deliverycharges.dirty || deliverycharges.touched)
+            }">     
           <label>Delivery Charges</label>
           <input placeholder="Deliver Charges"  class="form-control form-control-sm" value="" formControlName="deliverycharges">
-      </div> 
+      
+          <div class="was-validated"
+              *ngIf="deliverycharges.errors && (deliverycharges.dirty || deliverycharges.touched ) ">
+            <p *ngIf="deliverycharges.errors.required" class ="text-danger">Delivery Charge is required</p>
+            <div *ngIf="deliverycharges.errors.pattern" class ="text-danger">Enter only number.</div>
         
+        </div>
      </div>
+
+      </div>
+  </div>
+
+  
      <div class="row">
         <div class="col-md-6">
-           
+          <div    [ngClass]="{
+            'has-danger': size.invalid && (size.dirty || size.touched),
+            'has-success': size.valid && (size.dirty || size.touched)
+          }"> 
                 <label>Size</label>
                 <select class="form-control form-control-sm" name="itemsize" [(ngModel)]="selectSize" formControlName="size" >
                   <option value="" >Select</option>
@@ -25,18 +56,43 @@
                     {{sz.sizeName}}
                   </option>
                 </select>
+            <div class="was-validated"
+                *ngIf="size.errors && (size.dirty || size.touched ) ">
+             <p *ngIf="size.errors.required" class ="text-danger">Size required</p>
+             
+           </div>
               
         </div>
-        <div class="col-md-6">
-          <label>Price</label>
-          <input class="form-control form-control-sm" placeholder="Price" value="" formControlName="price" >
       </div>
+
+
+
+        <div class="col-md-6">
+          <div    [ngClass]="{
+            'has-danger': price.invalid && (price.dirty || price.touched),
+            'has-success': price.valid && (price.dirty || price.touched)
+          }"> 
+
+          <label>Price</label>
+          <input  class="form-control form-control-sm" placeholder="Price" value="" formControlName="price" >
+          <div class="was-validated"
+              *ngIf="price.errors && (price.dirty || price.touched ) ">
+          <p *ngIf="price.errors.required" class ="text-danger">Price is required</p>
+          <div *ngIf="price.errors.pattern" class ="text-danger">Enter only number.</div>
+          
+        </div>
+     
+        </div>
  
+    </div>
     </div>
 
     <div class="row">
       <div class="col-md-6">
-            
+        <div    [ngClass]="{
+          'has-danger': mainmenu.invalid && (mainmenu.dirty || mainmenu.touched),
+          'has-success': mainmenu.valid && (mainmenu.dirty || mainmenu.touched)
+        }">     
         <label>Main Menu</label>
         <select class="form-control form-control-sm" [(ngModel)]="selectmainMenu"  (change)=SubMenu(selectmainMenu) name="mainmenu" formControlName="mainmenu">
           <option value="" >Select</option>
@@ -44,9 +100,23 @@
             {{mn.menuName}}
           </option>
         </select>
-      
-</div>
+        <div class="was-validated"
+        *ngIf="mainmenu.errors && (mainmenu.dirty || mainmenu.touched ) ">
+      <p *ngIf="mainmenu.errors.required" class ="text-danger">Menu is required</p>
+      <div *ngIf="price.errors.pattern" class ="text-danger">Enter only number.</div>
+        
+     </div>
+
+
+
+      </div>
+    </div>
          <div class="col-md-6">
+         
+            <div    [ngClass]="{
+              'has-danger': submenu.invalid && (submenu.dirty || submenu.touched),
+              'has-success': submenu.valid && (submenu.dirty || submenu.touched)
+            }">  
                     <label>Sub Menu</label>
                     <select class="form-control form-control-sm" [(ngModel)]="selectmainSubMenu"  name="submenus" formControlName="submenu">
                       <option value="" selected>Select</option>
@@ -54,18 +124,38 @@
                         {{smenu.subMenuName}}
                       </option>
                     </select>
-                  
+                    <div class="was-validated"
+                    *ngIf="submenu.errors && (submenu.dirty || submenu.touched ) ">
+                  <p *ngIf="submenu.errors.required" class ="text-danger">Submenu is required</p>
+                  </div>
             </div>
-        </div>
+            </div>
+  </div>
 
 
     <div class="row">
         <div class="col-md-6">
+          <div    [ngClass]="{
+            'has-danger': offerprice.invalid && (offerprice.dirty || offerprice.touched),
+            'has-success': offerprice.valid && (offerprice.dirty || offerprice.touched)
+          }">  
                 <label>Offer Price</label>
                 <input class="form-control form-control-sm" placeholder="Offer Price" value="" formControlName="offerprice" >
-        </div>
         
+                <div class="was-validated"
+                *ngIf="offerprice.errors && (offerprice.dirty || offerprice.touched ) ">
+              <p *ngIf="offerprice.errors.required" class ="text-danger">Offerprice is required</p>
+          <div *ngIf="offerprice.errors.pattern" class ="text-danger">Enter only number.</div>
+          
+            </div>
+        
+              </div>
+        </div>
             <div class="col-md-6">
+              <div    [ngClass]="{
+                'has-danger': color.invalid && (color.dirty || color.touched),
+                'has-success': color.valid && (color.dirty || color.touched)
+              }">  
                     <label>Color</label>
                     <select class="form-control form-control-sm" [(ngModel)]="selectColor"  name="color" formControlName="color">
                       <option value="" >Select</option>
@@ -73,33 +163,98 @@
                         {{cl.colorName}}
                       </option>
                     </select>
-                  
+                    <div class="was-validated"
+                    *ngIf="color.errors && (color.dirty || color.touched ) ">
+                  <p *ngIf="color.errors.required" class ="text-danger">Color is required</p>
+                  </div>
+                    
+</div>
+                    
             </div>
     </div>
 
     <div class="row">
       <div class="col-md-6">
+        <div    [ngClass]="{
+          'has-danger': itemname.invalid && (itemname.dirty || itemname.touched),
+          'has-success': itemname.valid && (itemname.dirty || itemname.touched)
+        }"> 
         <label>Item Name</label>
         <input class="form-control form-control-sm" placeholder="Item Name" value="" formControlName="itemname" >
+        <div class="was-validated"
+                    *ngIf="itemname.errors && (itemname.dirty || itemname.touched ) ">
+                  <p *ngIf="itemname.errors.required" class ="text-danger">Item Name is required</p>
+         </div>
+      
+      
       </div>
+    </div>  
+
       <div class="col-md-6">
+        <div    [ngClass]="{
+          'has-danger': itemdescription.invalid && (itemdescription.dirty || itemdescription.touched),
+          'has-success': itemdescription.valid && (itemdescription.dirty || itemdescription.touched)
+        }"> 
         <label>Item Descrition</label>
         <textarea  class="form-control form-control-sm" placeholder="------" formControlName="itemdescription"></textarea>
-   
-      </div>     
+        
+
+        <div class="was-validated"
+          *ngIf="itemdescription.errors && (itemdescription.dirty || itemdescription.touched ) ">
+         <p *ngIf="itemdescription.errors.required" class ="text-danger">Item Description is required</p>
+      </div>
+
+
+
+        </div>
+      </div>   
+     
     </div>
 
     <div class="row">
       <div class="col-md-6">
+        <div    [ngClass]="{
+          'has-danger': quantity.invalid && (quantity.dirty || quantity.touched),
+          'has-success': quantity.valid && (quantity.dirty || quantity.touched)
+        }"> 
+
               <label>Initial Quantity</label>
               <input class="form-control form-control-sm" placeholder="Quantity" value="" formControlName="quantity" >
+      
+              <div class="was-validated"
+              *ngIf="quantity.errors && (quantity.dirty || quantity.touched ) ">
+             <p *ngIf="quantity.errors.required" class ="text-danger">Quantity is required</p>
+             <div *ngIf="quantity.errors.pattern" class ="text-danger">Enter only number.</div>
+        
+          
+            </div>
+      
       </div>
+      
+      </div>
+
+
+
+
       <div class="col-md-6">
+        <div    [ngClass]="{
+          'has-danger': brandname.invalid && (brandname.dirty || brandname.touched),
+          'has-success': brandname.valid && (brandname.dirty || brandname.touched)
+        }"> 
         <label>Brand</label>
         <input class="form-control form-control-sm" placeholder="Brand" value="" formControlName="brandname" >
     </div>
+
+    <div class="was-validated"
+              *ngIf="brandname.errors && (brandname.dirty || brandname.touched ) ">
+             <p *ngIf="brandname.errors.required" class ="text-danger">Brand is required</p>
+          </div>
+          </div>
+
+
   </div>
-  <div class="row" style="margin-bottom:15px;">
+  <br>
+  <div class="row" >
     <div class="col-md-12">
       <input class="form-control form-control-sm" type="file" multiple (change)="selectFiles($event)" #file placeholder="Choose file"  >
       <!-- <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button> -->
@@ -122,7 +277,7 @@
           <input type="button" (click)="uploadFiles() ($event)" value="Submit" class=" btn-success">
         </div>
         <div class="col-md-6">
-          <input type="button" value="Cancel" class=" btn-danger">
+          <input type="button" value="Cancel" class=" btn-danger pull-right">
         </div>
   </div>
 

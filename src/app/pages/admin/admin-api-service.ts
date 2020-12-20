@@ -61,8 +61,7 @@ constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private http: Http
    formData.append('supplierId',upld.supplierId.toString());
    formData.append('brand',upld.brand);
    
-   console.log(formData);
-    ///formData.append('file', fileToUpload);
+       ///formData.append('file', fileToUpload);
     this.uri=this.baseUrl+"/api/item/UploadNewImages";
     return this.http.post<uploadneitem>(this.uri, formData, {reportProgress: true,responseType: 'json', observe: 'events'});
     
