@@ -1,0 +1,30 @@
+
+ <ngx-datatable
+ #firstTable
+        class="material server-scrolling-demo"
+        [rows]="rows"
+        [columns]="[{ name: 'Name' }, { name: 'Gender' }, { name: 'Company' }]"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="headerHeight"
+        [rowHeight]="rowHeight"
+        [loadingIndicator]="isLoading"
+        [scrollbarV]="true"
+        (scroll)="onScroll($event.offsetY)"
+      >
+    
+</ngx-datatable> 
+
+
+<!-- <ngx-datatable
+        class="material server-scrolling-demo"
+        [rows]="rows"
+        [columns]="[{ name: 'Name' }, { name: 'Gender' }, { name: 'Company' }]"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="headerHeight"
+        [rowHeight]="rowHeight"
+        [loadingIndicator]="isLoading"
+        [scrollbarV]="true"
+        (scroll)="onScroll($event.offsetY)"
+      >
+    
+</ngx-datatable> -->

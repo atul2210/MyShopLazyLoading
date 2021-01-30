@@ -10,6 +10,7 @@ import {MatFormFieldModule } from '@angular/material';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {adminapiservice} from './admin-api-service';
 import { MatInputModule } from '@angular/material/input';
+import { AdminListComponent } from './admin-list.component';
 const routes: Routes = [
     { path: '', component: AdminComponent, children:[
         { path: 'AddItem', component: AddItemComponent,data: { linkIndex: 0 }},
@@ -19,7 +20,7 @@ const routes: Routes = [
 },
 ];
 @NgModule({
-  declarations: [AdminComponent, AddItemComponent, EditItemComponent, AdminMenuComponent, AdminDirective],
+  declarations: [AdminComponent, AddItemComponent, EditItemComponent, AdminMenuComponent, AdminDirective, AdminListComponent],
   imports: [
     CommonModule,MatFormFieldModule ,FormsModule,ReactiveFormsModule,MatInputModule,
     RouterModule.forChild(routes)

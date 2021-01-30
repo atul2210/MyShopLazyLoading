@@ -101,6 +101,7 @@ totalPaidAmount:number=1;
 GetItemDetails(itemId:string)
 {
 
+  this.itemid=itemId;
   this.restProvider.itemDetails(itemId)
   .subscribe(
     data => {
