@@ -102,14 +102,14 @@
  
  <tr>      
         <td class="item-fore-color">
-          <h4>Price: &nbsp;{{item.price |currency :"₹":''}}</h4>
+          <h4>Price: &nbsp;{{item.price |currency :"INR"}}</h4>
          
                     <!-- <img border="0" alt="Information" src="../../../assets/download.jpg" width="30" height="30" (mouseenter)="overTitle()" (mouseleave)="overTitle()"> -->
         </td>
               </tr>   
               <tr>
                 <td class="item-fore-color">
-                        <h4> Offer Price:&nbsp;  {{item.offerPrice|currency :"₹":''}}</h4>
+                        <h4> Offer Price:&nbsp;  {{item.offerPrice|currency :"INR"}}</h4>
                 </td>
               </tr>
                   <tr> 
@@ -121,21 +121,31 @@
                         </li>
                         
                       <li item-fore-color>
-                        <b>    Delivery Charges:&nbsp; {{item.deliveryCharges |currency :"₹":''}}</b>
+                        <b>    Delivery Charges:&nbsp; {{item.deliveryCharges |currency :"INR"}}</b>
                           </li>
                   </ul>
                
               </td>
                 </tr>
-           <tr>
-             <td style="font-size: 10px;" class="item-fore-color">
-               <b>Paid Amount 
-                (Excluding Delivery Charges) :{{totalPaidAmount|currency :"₹":''}}
-                
-              </b>
-             </td>
-           </tr>
+ 
             
+           <tr>
+            <td style="font-size: 10px;" class="item-fore-color">
+              <b>Amount 
+               (Excluding Delivery Charges) :{{totalPaidAmount|currency :"₹":''}}
+               
+             </b>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 10px;" class="item-fore-color">
+              <b>Total Paid Amount  
+               (Including Delivery Charges) :{{totalPaidAmount + item.deliveryCharges|currency :"INR"}}
+               
+             </b>
+            </td>
+          </tr>
+
             <tr>
               <td class="item-fore-color" >
                 <b>  Delivery:&nbsp; By Courier</b>

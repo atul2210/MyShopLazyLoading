@@ -242,8 +242,11 @@
           'has-success': brandname.valid && (brandname.dirty || brandname.touched)
         }"> 
         <label>Brand</label>
-        <input class="form-control form-control-sm" placeholder="Brand" value="" formControlName="brandname" >
-    </div>
+        <input type="text" class="form-control form-control-sm" formControlName="brandname" >
+        
+   
+   
+      </div>
 
     <div class="was-validated"
               *ngIf="brandname.errors && (brandname.dirty || brandname.touched ) ">

@@ -5,7 +5,7 @@
           [columnMode]="'force'"
           [headerHeight]="30"
           [footerHeight]="50"
-          [rowHeight]="150"
+          [rowHeight]="200"
           
           
           [rows]='rows'
@@ -41,12 +41,12 @@
             </ng-template>
           </ngx-datatable-column> -->
          
-          <ngx-datatable-column width="100">
+          <ngx-datatable-column width="100" >
                 <ng-template ngx-datatable-header-template>
                         <span class="fontClass">Cart Items </span>
                  </ng-template>
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              <div class="container">
+              <div class="container" >
                 <div class="row">
                   <div class ="col-md-12">
                    <h4 style ="color:blue"> 

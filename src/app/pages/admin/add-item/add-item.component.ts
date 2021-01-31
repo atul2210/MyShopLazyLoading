@@ -123,12 +123,13 @@ async GetNewItemDetails()
 }
 
  uploadFile = (files) => {
-debugger;
+
   if (files.length === 0) {
     return;
   }
   let fileToUpload = <File>files[0];
- 
+  this.upld.brand = this.admingroup.controls['brandname'].value; 
+
   this.upld.ChileMenuId=+this.selectmainSubMenu;
   this.upld.GroupId=0;
   this.upld.colorId=+this.selectColor
@@ -140,8 +141,7 @@ debugger;
   this.upld.price=+this.admingroup.controls['price'].value; 
   this.upld.sizeId=+this.selectSize;
   this.upld.supplierId=+this.selectSupplier;
-  this.upld.brand=this.admingroup.controls['brandname'].value; 
- 
+   
 
  //// let fileToUpload = <File>files[files.length];
    ////  this.adminapiservice.UploadFile(fileToUpload,this.upld)
@@ -200,7 +200,7 @@ debugger;
     this.upld.price=+this.admingroup.controls['price'].value; 
     this.upld.sizeId=+this.selectSize;
     this.upld.supplierId=+this.selectSupplier;
-
+    this.upld.brand = this.admingroup.controls['brandname'].value; 
     for (let i = 0; i < this.selectedFiles.length; i++) {
       // this.upload(i, this.selectedFiles[i]);
     

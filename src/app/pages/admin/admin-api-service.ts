@@ -36,9 +36,9 @@ constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private http: Http
 
   UploadFile(fileToUpload :any,upld:uploadneitem):Observable<any>
   {
-    
+   
     const formData = new FormData();
-    console.log(fileToUpload);
+    
     
     for (let i = 0; i < fileToUpload.length; i++) {
       // this.upload(i, this.selectedFiles[i]);
@@ -60,7 +60,7 @@ constructor(@Inject(LOCAL_STORAGE) private localStorage: any, private http: Http
    formData.append('availableQty',upld.initialQty.toString());
    formData.append('supplierId',upld.supplierId.toString());
    formData.append('brand',upld.brand);
-   
+  
        ///formData.append('file', fileToUpload);
     this.uri=this.baseUrl+"/api/item/UploadNewImages";
     return this.http.post<uploadneitem>(this.uri, formData, {reportProgress: true,responseType: 'json', observe: 'events'});
