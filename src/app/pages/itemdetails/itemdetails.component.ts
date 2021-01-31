@@ -253,14 +253,14 @@ salequantitminus()
 //   alert(`call from Setter: ${this.itemid}` );
 // }
 imgout:string;
-private hoverSmallImage(img:string)
+ hoverSmallImage(img:string)
 {
   
   this.imgout= this.itemDetail[0].image1
   this.itemDetail[0].image1=img;
 }
 
-private outSmallImage()
+ outSmallImage()
 {
  
   this.itemDetail[0].image1=this.imgout;

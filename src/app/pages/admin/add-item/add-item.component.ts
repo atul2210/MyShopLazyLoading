@@ -112,11 +112,12 @@ async GetNewItemDetails()
   
   await this.adminapiservice.GetNewItemDetails()
   .subscribe(res=>{
+    console.log(res);
     this.supps=res[0].supplierList;
     this.sizes=res[0].sizes;
     this.menu=res[0].menu;
     this.colors=res[0].colors;
-    console.log(this.menu);
+   
     
   });
 }
@@ -127,7 +128,7 @@ debugger;
     return;
   }
   let fileToUpload = <File>files[0];
-  
+ 
   this.upld.ChileMenuId=+this.selectmainSubMenu;
   this.upld.GroupId=0;
   this.upld.colorId=+this.selectColor
@@ -139,7 +140,8 @@ debugger;
   this.upld.price=+this.admingroup.controls['price'].value; 
   this.upld.sizeId=+this.selectSize;
   this.upld.supplierId=+this.selectSupplier;
-  debugger;
+  this.upld.brand=this.admingroup.controls['brandname'].value; 
+ 
 
  //// let fileToUpload = <File>files[files.length];
    ////  this.adminapiservice.UploadFile(fileToUpload,this.upld)
@@ -164,8 +166,7 @@ debugger;
     .subscribe((res:SubMenu) =>
     {
       this.mennu=res;
-      console.log(this.selectmainMenu);
-      console.log('ccc',this.mennu);
+     
      });
 
   }
